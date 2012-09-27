@@ -1,388 +1,1059 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=1024, user-scalable=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
 
-	<title>Intoduction to RDF and the Web of Data</title>
-	
-	<!-- Required stylesheet -->
-	<link rel="stylesheet" href="core/deck.core.css">
-	
-	<!-- Extension CSS files go here. Remove or add as needed. -->
-	<link rel="stylesheet" href="extensions/goto/deck.goto.css">
-	<link rel="stylesheet" href="extensions/menu/deck.menu.css">
-	<link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
-	<link rel="stylesheet" href="extensions/status/deck.status.css">
-	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
-	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+    <title>Intoduction to RDF and the Web of Data</title>
+    
+    <!-- Required stylesheet -->
+    <link rel="stylesheet" href="core/deck.core.css">
+    
+    <!-- Extension CSS files go here. Remove or add as needed. -->
+    <link rel="stylesheet" href="extensions/goto/deck.goto.css">
+    <link rel="stylesheet" href="extensions/menu/deck.menu.css">
+    <link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" href="extensions/status/deck.status.css">
+    <link rel="stylesheet" href="extensions/hash/deck.hash.css">
+    <link rel="stylesheet" href="extensions/scale/deck.scale.css">
 
-	<!-- Style theme. More available in /themes/style/ or create your own. -->
-	<link rel="stylesheet" href="themes/style/swiss.css">
-	
-	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
-	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
-	
-	<!-- Required Modernizr file -->
-	<script src="modernizr.custom.js"></script>
+    <!-- Style theme. More available in /themes/style/ or create your own. -->
+    <link rel="stylesheet" href="themes/style/swiss.css">
+    
+    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+    <link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+    
+    <!-- Required Modernizr file -->
+    <script src="modernizr.custom.js"></script>
 
-	<!-- style -->
-	<style type="text/css">
-	.forceOpacity {
-		opacity: 1 !important;
-	}
-	.redText {
-		color: red;
-		font-weight: bolder !important;
-	}
-	</style>
+    <!-- codemirror -->
+    <link rel="stylesheet" href="extensions/codemirror/deck.codemirror.css">
+    <link rel="stylesheet" href="extensions/codemirror/themes/default.css">
+
+    <!-- My custom styles -->
+    <link rel="stylesheet" href="main.css">
 </head>
 <body class="deck-container">
 
 <!-- Begin slides. -->
 <section class="slide" id="start">
-	<h1>Intoduction to RDF and the Web of Data</h1>
+    <h1>Intoduction to RDF and the Web of Data</h1>
 </section>
 
 <section class="slide" id="agenda">
-	<h2>Agenda</h2>
-	<ol>
-		<li>Introduction and motivation</li>
-		<li>URIs and IRIs</li>
-		<li>RDF data model</li>
-		<li>RDF Syntax</li>
-		<li>Data types</li>
-		<li>Blank nodes</li>
-		<li>RDF Containers</li>
-	</ol>
+    <h2>Agenda</h2>
+    <ol>
+        <li>Introduction and motivation</li>
+        <li>URIs and IRIs</li>
+        <li>RDF data model</li>
+        <li>RDF Syntax</li>
+        <li>Data types</li>
+        <li>Blank nodes</li>
+        <li>RDF Containers</li>
+    </ol>
 </section>
 
 <section class="slide" id="aboutme">
-	<h2>About me</h2>
-	<ul>
-		<li>
-			<strong>2004-2009</strong><br/>
-			Saint-Petersburg University of Telecommunications<br/>
-			Diploma Specialist of Technical Sciences<br/>
-			Graduation work: «Computer knowledge testing system»
-		</li>
+    <h2>About me</h2>
+    <ul>
+        <li>
+            <strong>2004-2009</strong><br/>
+            Saint-Petersburg University of Telecommunications<br/>
+            Diploma Specialist of Technical Sciences<br/>
+            Graduation work: «Computer knowledge testing system»
+        </li>
 
-		<li>
-			<strong>2010-now</strong><br/>
-			University of Leipzig, Institute of Computer Science<br/>
-			Research Group Agile Knowledge Engineering and Semantic Web<br/>
-			PhD Student
-		</li>
-		
-		<li>
-			<strong>Main field of work:</strong><br/>
-			Semantic technologies on mobile devices
-		</li>
-		
-		<li>
-			<strong>Development in AKSW research group:</strong><br/>
-			OntoWiki, (mobile)DSSN, LIMES, ReDD Observatory<br/>
-		</li>
-	
-		<li>
-			<strong>Research interests:</strong><br/> 
-			Ubiquitous devices, Semantic Web and Knowledge Engineering, Adaptive Methodologies, HCI
-		</li>
-	</ul>
+        <li>
+            <strong>2010-now</strong><br/>
+            University of Leipzig, Institute of Computer Science<br/>
+            Research Group Agile Knowledge Engineering and Semantic Web<br/>
+            PhD Student
+        </li>
+        
+        <li>
+            <strong>Main field of work:</strong><br/>
+            Semantic technologies on mobile devices
+        </li>
+        
+        <li>
+            <strong>Development in AKSW research group:</strong><br/>
+            OntoWiki, (mobile)DSSN, LIMES, ReDD Observatory<br/>
+        </li>
+    
+        <li>
+            <strong>Research interests:</strong><br/> 
+            Ubiquitous devices, Semantic Web and Knowledge Engineering, Adaptive Methodologies, HCI
+        </li>
+    </ul>
 </section>
 
 <!-- 
 INTRODUCTION AND MOTIVATION
 -->
 <section class="slide" id="into-0">
-	<h2>Agenda</h2>
-	<ol>
-		<li class="redText">Introduction and motivation</li>
-		<li>URIs and IRIs</li>
-		<li>RDF data model</li>
-		<li>RDF Syntax</li>
-		<li>Data types</li>
-		<li>Blank nodes</li>
-		<li>RDF Containers</li>
-	</ol>
+    <h2>Agenda</h2>
+    <ol>
+        <li class="redText">Introduction and motivation</li>
+        <li>URIs and IRIs</li>
+        <li>RDF data model</li>
+        <li>RDF Syntax</li>
+        <li>Data types</li>
+        <li>Blank nodes</li>
+        <li>RDF Containers</li>
+    </ol>
 </section>
 
 <section class="slide" id="into-1">
-	<h2>Introduction and motivation</h2>
-	<p>Tim Ermilov is teaching Introduction to RDF course.</p>
-	<pre class="slide forceOpacity" id="into-1.1">
-		<code>
+    <h2>Introduction and motivation</h2>
+    <p>Tim Ermilov is teaching Introduction to RDF course.</p>
+    <textarea class="code" mode="xtml" style="display: none;" class="slide forceOpacity" id="into-1.1">
 &lt;course name="Introduction to RDF"&gt;
-	&lt;lecturer&gt;Tim Ermilov&lt;/lecturer&gt;
-&lt;/course&gt;
-		</code>
-	</pre>
-	<p class="slide" id="into-1.2">Can you spot the problem in this representation?</p>
+    &lt;lecturer&gt;Tim Ermilov&lt;/lecturer&gt;
+&lt;/course&gt;</textarea>
+    <p class="slide" id="into-1.2">Can you spot the problem in this representation?</p>
 </section>
 
 <section class="slide" id="into-2">
-	<h3>Introduction and motivation</h3>
-	<p>Tim Ermilov is teaching Introduction to RDF course.</p>
-	<pre>
-		<code>
+    <h3>Introduction and motivation</h3>
+    <p>Tim Ermilov is teaching Introduction to RDF course.</p>
+    <textarea class="code" mode="text/xml" style="display: none;">
 &lt;course name="Introduction to RDF"&gt;
-	&lt;lecturer&gt;Tim Ermilov&lt;/lecturer&gt;
+    &lt;lecturer&gt;Tim Ermilov&lt;/lecturer&gt;
 &lt;/course&gt;
-		</code>
-	</pre>
-	<pre class="slide forceOpacity" id="into-2.1">
-		<code>
+    </textarea>
+    <textarea class="code" mode="xml" style="display: none;" class="slide forceOpacity" id="into-2.1">
 &lt;lecturer name="Tim Ermilov"&gt;
-	&lt;teaches&gt;Introduction to RDF&lt;/teaches&gt;
+    &lt;teaches&gt;Introduction to RDF&lt;/teaches&gt;
 &lt;/lecturer&gt;
-		</code>
-	</pre>
-	<p class="slide" id="into-2.2">There is no standard way of assigning meaning to tag nesting.</p>
+    </textarea>
+    <p class="slide" id="into-2.2">There is no standard way of assigning meaning to tag nesting.</p>
 </section>
 
 <section class="slide" id="into-3">
-	<h3>Introduction and motivation</h3>
-	<p>A lecturer is a subclass of an academic staff member.</p>
-	<pre class="slide forceOpacity" id="into-3.0">
-		<code>
+    <h3>Introduction and motivation</h3>
+    <p>A lecturer is a subclass of an academic staff member.</p>
+    <textarea class="code" mode="xml" style="display: none;" class="slide forceOpacity" id="into-3.0">
 &lt;academicStaffMember&gt;Sören Auer&lt;/academicStaffMember&gt;
-		</code>
-	</pre>
-	<pre class="slide forceOpacity" id="into-3.1">
-		<code>
+    </textarea>
+    <textarea class="code" mode="xml" style="display: none;" class="slide forceOpacity" id="into-3.1">
 &lt;professor&gt;Klaus-Peter Fähnrich&lt;/professor&gt;
-		</code>
-	</pre>
-	<pre class="slide" id="into-3.2">
-		<code>
+    </textarea>
+    <textarea class="code" mode="xml" style="display: none;" class="slide" id="into-3.2">
 &lt;course name=“Introduction to RDF"&gt;
-	&lt;isTaughtBy&gt;Tim Ermilov&lt;/isTaughtBy&gt;
+    &lt;isTaughtBy&gt;Tim Ermilov&lt;/isTaughtBy&gt;
 &lt;/course&gt;
-		</code>
-	</pre>
+    </textarea>
 </section>
 
 <section class="slide" id="into-4">
-	<h3>Introduction and motivation</h3>
-	<p>Retrieve all the members of the academic staff.</p>
-	<p class="slide" id="into-4.1">
-		Example Xpath query: //academicStaffMember
-	</p>
-	<p class="slide" id="into-4.2">
-		Only result: Sören Auer.
-	</p>
-	<p class="slide" id="into-4.3">
-		Correct from the XML viewpoint<br/>
-		But semantically unsatisfactory.<br/>
-		Human readers would have also included Klaus-Peter Fähnrich and Tim Ermilov.
-	</p>
-	<p class="slide" id="into-4.4">
-		RDF makes semantic information machine accessible.
-	</p>
+    <h3>Introduction and motivation</h3>
+    <p>Retrieve all the members of the academic staff.</p>
+    <p class="slide" id="into-4.1">
+        Example Xpath query: //academicStaffMember
+    </p>
+    <p class="slide" id="into-4.2">
+        Only result: Sören Auer.
+    </p>
+    <p class="slide" id="into-4.3">
+        Correct from the XML viewpoint<br/>
+        But semantically unsatisfactory.<br/>
+        Human readers would have also included Klaus-Peter Fähnrich and Tim Ermilov.
+    </p>
+    <p class="slide" id="into-4.4">
+        RDF makes semantic information machine accessible.
+    </p>
 </section>
 
 <!-- 
 URIs
 -->
 <section class="slide" id="uri-0">
-	<h2>Agenda</h2>
-	<ol>
-		<li>Introduction and motivation</li>
-		<li class="redText">URIs and IRIs</li>
-		<li>RDF data model</li>
-		<li>RDF Syntax</li>
-		<li>Data types</li>
-		<li>Blank nodes</li>
-		<li>RDF Containers</li>
-	</ol>
+    <h2>Agenda</h2>
+    <ol>
+        <li>Introduction and motivation</li>
+        <li class="redText">URIs and IRIs</li>
+        <li>RDF data model</li>
+        <li>RDF Syntax</li>
+        <li>Data types</li>
+        <li>Blank nodes</li>
+        <li>RDF Containers</li>
+    </ol>
 </section>
 
 <section class="slide" id="uri-1">
-	<h2>URIs: Idea</h2>
-	<ul>
-		<li>URI = <strong>Uniform Resource Identifier</strong></li>
-		<li class="slide" id="uri-1.1">
-			Serves as a global unique identifier of resource
-		</li>
-		<li class="slide" id="uri-1.2">
-			Any object which has a clear identity can be a resource (e.g. books, places, people, abstract concepts, etc.)
-		</li>
-		<li class="slide" id="uri-1.2">
-			Similar thing already exists in certain domains: ISBN for books
-		</li>
-	</ul>
+    <h2>URIs: Idea</h2>
+    <ul>
+        <li>URI = <strong>Uniform Resource Identifier</strong></li>
+        <li class="slide" id="uri-1.1">
+            Serves as a global unique identifier of resource
+        </li>
+        <li class="slide" id="uri-1.2">
+            Any object which has a clear identity can be a resource (e.g. books, places, people, abstract concepts, etc.)
+        </li>
+        <li class="slide" id="uri-1.2">
+            Similar thing already exists in certain domains: ISBN for books
+        </li>
+    </ul>
 </section>
 
 <section class="slide" id="uri-2">
-	<h2>URIs: Syntax</h2>
-	<ul>
-		<li>
-			Extension of the URL concept.<br/>
-			But not every URI denotes a Web document (conversely, the URI of Web documents often used as their URL).
-		</li>
-		<li class="slide" id="uri-2.1">
-			Begins with the the URI scheme separated by ":" from the subsequent part (eg: http, ftp, mailto)
-		</li>
-		<li class="slide" id="uri-2.2">
-			Any object which has a clear identity can be a resource (e.g. books, places, people, abstract concepts, etc.)
-		</li>
-		<li class="slide" id="uri-2.3">
-			Every URI consists of four parts, as follows:<br/>
-			<code> Scheme : Hierarchy [ ? Query ] [ # Fragment ] </code>
-		</li>
-	</ul>
+    <h2>URIs: Syntax</h2>
+    <ul>
+        <li>
+            Extension of the URL concept.<br/>
+            But not every URI denotes a Web document (conversely, the URI of Web documents often used as their URL).
+        </li>
+        <li class="slide" id="uri-2.1">
+            Begins with the the URI scheme separated by ":" from the subsequent part (eg: http, ftp, mailto)
+        </li>
+        <li class="slide" id="uri-2.2">
+            Any object which has a clear identity can be a resource (e.g. books, places, people, abstract concepts, etc.)
+        </li>
+        <li class="slide" id="uri-2.3">
+            Every URI consists of four parts, as follows:<br/>
+            <code> Scheme : Hierarchy [ ? Query ] [ # Fragment ] </code>
+        </li>
+    </ul>
 </section>
 
 <section class="slide" id="uri-3">
-	<h2>URIs: Self-Describing</h2>
-	<ul>
-		<li>
-			Necessary when a resource has no URI (or URI is not known).
-		</li>
-		<li class="slide" id="uri-3.1">
-			Strategy to avoid unwanted overlap: use of http-URIs for the website.
-		</li>
-		<li class="slide" id="uri-3.2">
-			Allows dropping a URI documentation.
-		</li>
-		<li class="slide" id="uri-3.3">
-			Example: http://jens-lehmann.org/foaf.rdf#me
-		</li>
-	</ul>
+    <h2>URIs: Self-Describing</h2>
+    <ul>
+        <li>
+            Necessary when a resource has no URI (or URI is not known).
+        </li>
+        <li class="slide" id="uri-3.1">
+            Strategy to avoid unwanted overlap: use of http-URIs for the website.
+        </li>
+        <li class="slide" id="uri-3.2">
+            Allows dropping a URI documentation.
+        </li>
+        <li class="slide" id="uri-3.3">
+            Example: http://jens-lehmann.org/foaf.rdf#me
+        </li>
+    </ul>
 </section>
 
 <!-- 
 IRIs
 -->
 <section class="slide" id="iri-1">
-	<h2>IRIs</h2>
-	<ul>
-		<li>IRI = <strong>Internationalized Resource Identifier</strong></li>
-		<li class="slide" id="iri-1.1">
-			Represent a generalization of the URI
-		</li>
-		<li class="slide" id="iri-1.2">
-			IRIs can contain Unicode characters
-		</li>
-		<li class="slide" id="iri-1.2">
-			Examples:<br/>
-			http://www.example.org/Wüste<br/>
-			http://www.example.org/사막<br/>
-			http://пример.ру/Санкт-Петербург
-		</li>
-	</ul>
+    <h2>IRIs</h2>
+    <ul>
+        <li>IRI = <strong>Internationalized Resource Identifier</strong></li>
+        <li class="slide" id="iri-1.1">
+            Represent a generalization of the URI
+        </li>
+        <li class="slide" id="iri-1.2">
+            IRIs can contain Unicode characters
+        </li>
+        <li class="slide" id="iri-1.2">
+            Examples:<br/>
+            http://www.example.org/Wüste<br/>
+            http://www.example.org/사막<br/>
+            http://пример.ру/Санкт-Петербург
+        </li>
+    </ul>
 </section>
 
 <!-- 
 Other IDs
 -->
 <section class="slide" id="urn-1">
-	<h2>Other Identifier Systems</h2>
-	<ul>
-		<li>URN = <strong>Uniform Resource Name</strong></li>
-		<li class="slide" id="urn-1.1">
-			Subset of URIs
-		</li>
-		<li class="slide" id="urn-1.2">
-			Used to identify resources by name
-		</li>
-		<li class="slide" id="urn-1.3">
-			Used for globally unique and persistent identifier of goods (e.g. ISBN)
-		</li>
-		<li class="slide" id="urn-1.4">
-			Example:<br/>
-			URN of "Science of Computer Programming" journal - <strong>urn:issn:0167-6423</strong>
-		</li>
-	</ul>
+    <h2>Other Identifier Systems</h2>
+    <ul>
+        <li>URN = <strong>Uniform Resource Name</strong></li>
+        <li class="slide" id="urn-1.1">
+            Subset of URIs
+        </li>
+        <li class="slide" id="urn-1.2">
+            Used to identify resources by name
+        </li>
+        <li class="slide" id="urn-1.3">
+            Used for globally unique and persistent identifier of goods (e.g. ISBN)
+        </li>
+        <li class="slide" id="urn-1.4">
+            Example:<br/>
+            URN of "Science of Computer Programming" journal - <strong>urn:issn:0167-6423</strong>
+        </li>
+    </ul>
 </section>
 
 <section class="slide" id="isn-1">
-	<h2>Other Identifier Systems</h2>
-	<ul>
-		<li>
-			ISBN = <strong>International Standard Book Number</strong><br/>
-			ISSN = <strong>International Standard Serial Number</strong>
-		</li>
-		<li class="slide" id="isn-1.1">
-			ISBN used to identify books<br/>
-			ISSN is used to identify journals and book series
-		</li>
-		<li class="slide" id="isn-1.2">
-			Example:<br/>
-			ISBN 978-3-86680-192-9<br/>
-			ISSN 1234-5678
-		</li>
-	</ul>
+    <h2>Other Identifier Systems</h2>
+    <ul>
+        <li>
+            ISBN = <strong>International Standard Book Number</strong><br/>
+            ISSN = <strong>International Standard Serial Number</strong>
+        </li>
+        <li class="slide" id="isn-1.1">
+            ISBN used to identify books<br/>
+            ISSN is used to identify journals and book series
+        </li>
+        <li class="slide" id="isn-1.2">
+            Example:<br/>
+            ISBN 978-3-86680-192-9<br/>
+            ISSN 1234-5678
+        </li>
+    </ul>
 </section>
 
 <section class="slide" id="doi-1">
-	<h2>Other Identifier Systems</h2>
-	<ul>
-		<li>
-			DOI = <strong>Digital Object Identifier</strong>
-		</li>
-		<li class="slide" id="doi-1.1">
-			DOI is a unique and permanent identifier for digital objects.<br/>
-			Mainly used for on-line articles and scientific journals.
-		</li>
-		<li class="slide" id="doi-1.2">
-			Example:<br/>
-			DOI Handbook - DOI 10.1000/182
-		</li>
-	</ul>
+    <h2>Other Identifier Systems</h2>
+    <ul>
+        <li>
+            DOI = <strong>Digital Object Identifier</strong>
+        </li>
+        <li class="slide" id="doi-1.1">
+            DOI is a unique and permanent identifier for digital objects.<br/>
+            Mainly used for on-line articles and scientific journals.
+        </li>
+        <li class="slide" id="doi-1.2">
+            Example:<br/>
+            DOI Handbook - DOI 10.1000/182
+        </li>
+    </ul>
 </section>
 
 <!-- 
 RDF Data model
 -->
 <section class="slide" id="rdfdm-0">
-	<h2>Agenda</h2>
-	<ol>
-		<li>Introduction and motivation</li>
-		<li>URIs and IRIs</li>
-		<li class="redText">RDF data model</li>
-		<li>RDF Syntax</li>
-		<li>Data types</li>
-		<li>Blank nodes</li>
-		<li>RDF Containers</li>
-	</ol>
+    <h2>Agenda</h2>
+    <ol>
+        <li>Introduction and motivation</li>
+        <li>URIs and IRIs</li>
+        <li class="redText">RDF data model</li>
+        <li>RDF Syntax</li>
+        <li>Data types</li>
+        <li>Blank nodes</li>
+        <li>RDF Containers</li>
+    </ol>
 </section>
 
 <section class="slide" id="rdfdm-1">
-	<h2>General information on RDF</h2>
-	
-	<p>Resource Description Framework</p>
-	<p class="slide" id="rdfdm-1.1">
-		W3C Recommendation (<a href="http://www.w3.org/RDF">http://www.w3.org/RDF</a>)
-	</p>
-	<p class="slide" id="rdfdm-1.2">
-		RDF is a data model
-	</p>
-	<ul>
-		<li class="slide" id="rdfdm-1.3">
-			Originally was made to provide metadata for Web resources
-		</li>
-		<li class="slide" id="rdfdm-1.4">
-			Coded structured information
-		</li>
-		<li class="slide" id="rdfdm-1.5">
-			Universal, machine-readable data format
-		</li>
-	</ul>
+    <h2>General information on RDF</h2>
+    
+    <p>Resource Description Framework</p>
+    <p class="slide" id="rdfdm-1.1">
+        W3C Recommendation (<a href="http://www.w3.org/RDF">http://www.w3.org/RDF</a>)
+    </p>
+    <p class="slide" id="rdfdm-1.2">
+        RDF is a data model
+    </p>
+    <ul>
+        <li class="slide" id="rdfdm-1.3">
+            Originally was made to provide metadata for Web resources
+        </li>
+        <li class="slide" id="rdfdm-1.4">
+            Coded structured information
+        </li>
+        <li class="slide" id="rdfdm-1.5">
+            Universal, machine-readable data format
+        </li>
+    </ul>
+</section>
+
+<section class="slide" id="rdf-components">
+    <h2>Components of RDF graph</h2>
+    
+    <ul>
+        <li>
+            <h3>URI</h3>
+            <p>for unique referencing to resources</p>
+        </li>
+    </ul>
+    <ul class="slide forceOpacity" id="rdf-components-1.1">
+        <li>
+            <h3>Literals</h3>
+            <p>for representing an instance data value</p>
+        </li>
+    </ul>
+    <ul class="slide" id="rdf-components-1.2">
+        <li>
+            <h3>Blank nodes</h3>
+            <p>for representing a resource for which a URI or literal is not given</p>
+        </li>
+    </ul>
+</section>
+
+<section class="slide" id="rdf-ex">
+    <h2>Example of RDF graph</h2>
+
+    <!-- <div id="graph-ex"></div> -->
+    <img src="images/rdf-ex.png">
+</section>
+
+<section class="slide" id="rdf-literals">
+    <h2>Literals</h2>
+
+    <p>Used for the representation of data values</p>
+    <p>View as strings</p>
+    <p>Interpretation is done by data type</p>
+    <p>Literals without data type will be treated as strings</p>
+    <img src="images/rdf-ex-literals.png">
+</section>
+
+<section class="slide" id="rdf-triples">
+    <h2>Graph as a set of triples</h2>
+
+    <p>Different graph representations</p>
+    <p>Used: List of (node-edge-node)-triples</p>
+    <img src="images/rdf-ex-literals.png">
+</section>
+
+<section class="slide" id="rdf-triples-2">
+    <h2>Graph as a set of triples</h2>
+
+    <p>Literals can never be the starting point of edges in RDF graph</p>
+    <p>Edges of the RDF graph cannot be labeled with literals</p>
+</section>
+
+<section class="slide" id="rdf-triple">
+    <h2>RDF Triple</h2>
+
+    <p>Components of an RDF triple</p>
+    <img src="images/rdf-triple.png">
+    <p>Modeled on linguistic categories, but not always consistent</p>
+    <p class="slide" id="rdf-triple-1.1">
+        Allowed assignments:
+    </p>
+    <ul>
+        <li class="slide" id="rdf-triple-1.2">
+            <strong>Subject</strong>: URI or Blank node
+        </li>
+        <li class="slide" id="rdf-triple-1.3">
+            <strong>Predicate</strong>: URI (also called Property)
+        </li>
+        <li class="slide" id="rdf-triple-1.4">
+            <strong>Object</strong>: URI or Blank node or Literal
+        </li>
+    </ul>
+    <p class="slide" id="rdf-triple-1.5">
+        Node and edge identifiers are unique, so the original graph can be always reconstructed from triple-list
+    </p>
+</section>
+
+<!-- 
+RDF Syntax
+-->
+<section class="slide" id="rdf-syntax-0">
+    <h2>Agenda</h2>
+    <ol>
+        <li>Introduction and motivation</li>
+        <li>URIs and IRIs</li>
+        <li>RDF data model</li>
+        <li class="redText">RDF Syntax</li>
+        <li>Data types</li>
+        <li>Blank nodes</li>
+        <li>RDF Containers</li>
+    </ol>
+</section>
+
+<section class="slide" id="rdf-syntax-1">
+    <h2>RDF Serializations</h2>
+    <figure>
+        <a href="http://www.w3.org/DesignIssues/diagrams/n3/venn">
+            <img class="center" src="http://www.w3.org/DesignIssues/diagrams/n3/venn" />
+            <figcaption>http://www.w3.org/DesignIssues/diagrams/n3/venn</figcaption>
+        </a>
+    </figure>
+</section>
+
+<section class="slide" id="rdf-syntax-turtle">
+    <h2>Syntax: Turtle</h2>
+    <p>Turtle syntax:</p>
+    <ul>
+        <li>
+            URIs written in angle brackets, for example: &lt;http://dbpedia.org/resource/Leipzig&gt;
+        </li>
+        <li>
+            Literals written in quotes, for example: "Leipzig"@de and "51.333332"^^xsd:float
+        </li>
+        <li>
+            Triples are completed by dot
+        </li>
+        <li>
+            Spaces and line breaks within identifiers are ignored
+        </li>
+    </ul>
+</section>
+
+<section class="slide" id="rdf-syntax-turtle-abbreviations">
+    <h2>Turtle Syntax: Abbreviations</h2>
+    <p>
+        Example:
+        <textarea class="code" mode="xml" style="display: none;">
+&lt;http://dbpedia.org/resource/Leipzig&gt;  &lt;http://dbpedia.org/property/hasMayor&gt;   &lt;http://dbpedia.org/resource/Burkhard_Jung &gt; .
+&lt;http://dbpedia.org/resource/Leipzig&gt;     &lt;http://www.w3.org/2000/01/rdf-schema#label&gt;      "Leipzig"@de .
+&lt;http://dbpedia.org/resource/Leipzig&gt;     &lt;http://www.w3.org/2003/01/geo/wgs84_pos#lat&gt;    
+"51.333332"^^ &lt;http://www.w3.org/2001/XMLSchema#float&gt; .
+&lt;http://dbpedia.org/resource/Leipzig&gt;     &lt;http://www.w3.org/2003/01/geo/wgs84_pos#lon&gt;  
+"12.383333"^^ &lt;http://www.w3.org/2001/XMLSchema#float&gt; .</textarea>
+    </p>
+    <p>
+        Turtle prefixes can be defined:
+        <textarea class="code" mode="xml" style="display: none;">
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dbr:  <http://dbpedia.org/resource/> .
+@prefix dbp:  <http://dbpedia.org/property/> .
+@prefix geo:  <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+
+dbr:Leipzig   dbp:hasMayor   dbr:Burkhard_Jung .
+dbr:Leipzig   rdfs:label     "Leipzig"@de .
+dbr:Leipzig   geo:lat        "51.333332"^^xsd:float .
+dbr:Leipzig   geo:long       "12.383333"^^xsd:float .</textarea>
+    </p>
+</section>
+
+<section class="slide" id="rdf-syntax-turtle-abbreviations-2">
+    <h2>Turtle Syntax: Abbreviations</h2>
+    <p>
+        Triples with the same subject can be combined:
+        <textarea class="code" mode="xml" style="display: none;">
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+…
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+
+dbr:Leipzig   dbp:hasMayor    dbr:Burkhard_Jung ;
+              rdfs:label      "Leipzig"@de ;
+              geo:lat         "51.333332"^^xsd:float ;
+              geo:long        "12.383333"^^xsd:float .</textarea>
+    </p>
+    <p>
+        As can be triples with the same subject and predicate:
+        <textarea class="code" mode="xml" style="display: none;">
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+
+dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany;
+               dbp:hasMayor      dbr:Burkhard_Jung .</textarea>
+    </p>
 </section>
 
 
+<section class="slide" id="rdf-syntax-xml-1">
+    <h2>XML Syntax for RDF</h2>
+    <p>
+        Turtle is intuitively readable and machine applicable
+    </p>
+    <p>
+        But there's better tool support and more programming libraries for XML
+    </p>
+    <p>
+        Therefore: RDF/XML syntax has spread
+    </p>
+    <p>
+        Standard practice: if RDF data is published, RDF/XML is provided as one of serializations
+    </p>
+</section>
+
+<section class="slide" id="rdf-syntax-xml-2">
+    <h2>XML Syntax for RDF</h2>
+    <p>
+        Namespaces are used to disambiguate tagname (same as in XML)
+    </p>
+    <p>
+        RDF own tags have a default namespace identifier 'rdf'
+    </p>
+    <textarea class="code" mode="xml" style="display: none;">
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:xsd= "http://www.w3.org/2001/XMLSchema#"
+         xmlns:dbp="http://dbpedia.org/property/"
+         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+    <rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig">
+        <dbp:hasMayor rdf:resource="http://dbpedia.org/resource/Burkhard_Jung" />
+        <rdfs:label xml:lang="de">Leipzig</rdfs:label>
+        <geo:lat rdf:datatype="float">51.3333</geo:lat>
+        <geo:long rdf:datatype="float">12.3833</geo:long>
+    </rdf:Description>
+</rdf:RDF></textarea>
+</section>
+
+<section class="slide" id="rdf-syntax-xml-3">
+    <h2>XML Syntax for RDF</h2>
+    <p>
+        <i>rdf:Description</i> element includes subject (URI as the value of the corresponding <i>rdf:about</i> attribute)
+    </p>
+    <p>
+        Each of the elements contained in <i>rdf:Description</i> is a predicate, which in turn contains the Object of the triple (via <i>rdf:resource</i> attribute)
+    </p>
+    <textarea class="code" mode="xml" style="display: none;">
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:xsd= "http://www.w3.org/2001/XMLSchema#"
+         xmlns:dbp="http://dbpedia.org/property/"
+         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+    <rdf:Description <strong>rdf:about="http://dbpedia.org/resource/Leipzig"></strong>
+        <dbp:hasMayor rdf:resource="http://dbpedia.org/resource/Burkhard_Jung" />
+        <rdfs:label xml:lang="de">Leipzig</rdfs:label>
+        <geo:lat rdf:datatype="float">51.3333</geo:lat>
+        <geo:long rdf:datatype="float">12.3833</geo:long>
+    </rdf:Description>
+</rdf:RDF></textarea>
+</section>
+
+<section class="slide" id="rdf-syntax-xml-4">
+    <h2>XML Syntax for RDF</h2>
+    <p>
+        Literals can be represented as text inside of the element
+    </p>
+    <p>
+        Allowed condensed version:
+        <ul>
+            <li>
+                A Subject includes several of Property elements
+            </li>
+            <li>
+                An Object description serves as the Subject for another triple
+            </li>
+        </ul>
+    </p>
+    <textarea class="code" mode="xml" style="display: none;">
+<?xml version="1.0"?>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig">
+  <dbr:name>Leipzig</dbr:name>
+  <dbp:hasMayor>
+    <rdf:Description rdf:about=„http://dbpedia.org/resource/Burkhard_Jung“>
+      <dbp:name>Burkhard Jung</dbp:name>
+    </rdf:Description>
+  </dbp:hasMayor>
+  <geo:lat rdf:datatype="float">51.3333</geo:lat>
+  <geo:long rdf:datatype="float">12.3833</geo:long>
+</rdf:Description></textarea>
+</section>
+
+<section class="slide" id="rdf-syntax-xml-5">
+    <h2>XML Syntax for RDF</h2>
+    <p>
+        Alternatively (but semantically equivalent) literals can be representated as XML attributes
+    </p>
+    <p>
+        Attribute names are then the property URIs
+    </p>
+    <p>
+        Object URIs can be specified as the value of the rdf:resource attributes within a property tags
+    </p>
+    <textarea class="code" mode="xml" style="display: none;">
+<?xml version="1.0"?>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig" 
+                 dbp:name="Leipzig">
+            <geo:lat rdf:datatype="float">51.3333</geo:lat>
+            <geo:long rdf:datatype="float">12.3833</geo:long>           
+</rdf:Description>
+<rdfDescription rdf:about="http://dbpedia.org/resource/Burkhard_Jung"
+                rdf:hasMayor
+                dbp:name="Burkhard Jung">
+</rdf:Description></textarea>
+</section>
+
+<section class="slide" id="rdf-syntax-xml-6">
+    <h2>RDF/XML Syntax: Complications</h2>
+    <p>
+        <b>Namespaces are essential</b>, but in XML elements and attributes colons does not indicate namespaces
+    </p>
+    <p>
+        <b>Problem</b>:<br/> 
+        it's not possible to us any XML namespaces possible in attribute values ​​(would the sense of a URI scheme interpreted):
+        <textarea class="code" mode="xml" style="display: none;">
+            rdf:about="dbr:Leipzig"
+        </textarea>
+    </p>
+    <p>
+        "Workaround" via XML entities:
+        <textarea class="code" mode="xml" style="display: none;">
+            <!ENTITY dbr 'http://dbpedia.org/resource/'>
+        </textarea>
+        <textarea class="code" mode="xml" style="display: none;">
+            rdf:resource="&dbr;Leipzig"
+        </textarea>
+    </p>
+</section>
+
+<section class="slide" id="rdf-syntax-xml-7">
+    <h2>RDF/XML Syntax: Base URLs</h2>
+    <p>
+        Working with base URIs:
+        <textarea class="code" mode="xml" style="display: none;">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xml:base="http://dbpedia.org/resource/" >
+         
+    <rdf:Description rdf:about="Leipzig">
+        <property:hasMayor rdf:resource="Burkhard_Jung" />
+    </rdf:Description
+</rdf:RDF></textarea>
+    </p>
+    <p>
+        Detection of relative URIs in the absence of a scheme member
+    </p>
+</section>
+
+<!-- 
+RDF / JSON
+-->
+<section class="slide" id="rdf-syntax-json-1">
+    <h2>RDF/JSON</h2>
+    <p>
+        JSON = JavaScript Object Notation
+    </p>
+    <p>
+        Compact format for data exchange between applications
+    </p>
+    <p>
+        Valid JSON_Dokument is valid JavaScript and can be interpreted by eval()
+    </p>
+    <p>
+        Programming language independent (a lot of parsers for most languages)
+    </p>
+    <p>
+        Produces less overhead than XML (for parsing and serializing)
+    </p>
+</section>
+
+<section class="slide" id="rdf-syntax-json-2">
+    <h2>RDF/JSON</h2>
+    <p>
+        An RDF/JSON object is formed from subject S, predicate P and object O:
+        <textarea class="code" mode="json" style="display: none;">
+            {"S": {"P": [O] } }
+        </textarea>
+    </p>
+    <p>
+        Object is in the form:
+        <ul>
+            <li>Must be "URI", "literal" or "bnode" type. Must be specified and must be lowercase</li>
+            <li>Value: describes the data value of an object. You must specify the best the entire URI</li>
+            <li>Long: Specifies the literal language. Is optional, but if it has been specified, it can not be empty</li>
+            <li>Data Type: Specifies the URI of the data type of the literal. Is also an option.</li>
+        </ul>
+    </p>
+</section>
+
+<section class="slide" id="rdf-syntax-json-3">
+    <h2>Example of RDF/JSON Document</h2>
+    <textarea class="code" mode="javascript" style="display: none;">
+{
+  "http://dbpedia.org/resource/Leipzig" : {
+       "http://dbpedia.org/property/hasMayor": 
+              [ { "type":"uri", "value":"http://dbpedia.org/resource/Burkhard_Jung" } ],
+       "http://www.w3.org/2000/01/rdf-schema#label":
+              [ { "type":"literal", "value":"Leipzig", "lang":"en" } ] ,
+       "http://www.w3.org/2003/01/geo/wgs84_pos#lat":
+              [ { "type":"literal", "value":"51.3333",
+                    "datatype":"http://www.w3.org/2001/XMLSchema#float" } ]
+      "http://www.w3.org/2003/01/geo/wgs84_pos#lon":
+              [ { "type":"literal", "value":"12.3833",
+                        "datatype":"http://www.w3.org/2001/XMLSchema#float" } ]
+    }
+}
+    </textarea>
+</section>
+
+<section class="slide" id="rdf-syntax-rdfa-1">
+    <h2>RDFa</h2>
+    <p>RDFa = RDF in attributes</p>
+    <p>Was developed to embed RDF into XHTML</p>
+    <p>UTF-8 and UTF-16 were used for coding, as extension of XML-based XHTML</p>
+    <p>IRIs can be used</p>
+    <p>Since RDFa is embedded in XHTML, it creates a greater overhead than other serializations</p>
+    <p>The readability is reduced in comparison to Turtle</p>
+</section>
+
+<section class="slide" id="rdf-syntax-rdfa-2">
+    <h2>Example of RDFa</h2>
+    <textarea class="code" mode="text/html" style="display: none;">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html version="XHTML+RDFa 1.0" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:xsd=" http://www.w3.org/2001/XMLSchema# "
+      xmlns:dbp="http://dbpedia.org/property/"
+         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+  <head><title>Leipzig</title></head>
+  <body about="http://dbpedia.org/resource/Leipzig">
+    <h1 property="rdfs:label" xml:lang="de">Leipzig</h1>
+    <p>Leipzig is a city in Germany. Leipzig's mayor is 
+       <a href="Burkhard_Jung" rel="dbp:hasMayor">Burkhard Jung</a>. It is located
+         at latitude <span property="geo:lat" datatype="xsd:float">51.3333</span>
+       and longitude <span property="geo:long" datatype="xsd:float">12.3833</span>.
+   </p>
+  </body>
+</html>
+    </textarea>
+</section>
 
 
+<!-- 
+Data types
+-->
+<section class="slide" id="rdf-datatypes-0">
+    <h2>Agenda</h2>
+    <ol>
+        <li>Introduction and motivation</li>
+        <li>URIs and IRIs</li>
+        <li>RDF data model</li>
+        <li>RDF Syntax</li>
+        <li class="redText">Data types</li>
+        <li>Blank nodes</li>
+        <li>RDF Containers</li>
+    </ol>
+</section>
+
+<section class="slide" id="rdf-datatypes-1">
+    <h2>Data Types</h2>
+    <p>
+        Example: <i>xsd:decimal</i>
+    </p>
+    <img src="images/datatype-abstract.png">
+</section>
+
+<section class="slide" id="rdf-datatypes-2">
+    <h2>Data Types in RDF</h2>
+    <p>
+        Previously: untyped literals are treated as strings (e.g.: "02" < "100" < "11" < "2")
+    </p>
+    <p>Typing allows better (semantic) approach to values</p>
+    <p>Data types are identified by URIs, and are in principle arbitrary</p>
+    <p>Common: the use of XML Schema data types (XSD)</p>
+    <p>Syntax: "Data value"^^datatype-URI</p>
+</section>
+
+<section class="slide" id="rdf-datatypes-3">
+    <h2>Data Types in RDF: Example</h2>
+    <img src="images/datatype-ex.png" style="max-height: 200px;">
+    <textarea class="code" mode="xml" style="display: none;">
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
+
+dbr:Leipzig     geo:lat     "51.333332"^^xsd:float ,
+                geo:long    "12.383333"^^xsd:float .
+</textarea>
+
+<textarea class="code" mode="xml" style="display: none;">
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig">
+    <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#float">51.3333</geo:lat>
+    <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#float">12.3833</geo:long>
+</rdf:Description>
+</textarea>
+</section>
+
+<section class="slide" id="rdf-datatypes-4">
+    <h2>Predefined Data Types</h2>
+    <p>rdf:XML literal is the only pre-defined data type in RDF called arbitrary (balanced) XML fragments</p>
+    <p>in RDF/XML syntax for uniquely special presentation:</p>
+    <textarea class="code" mode="xml" style="display: none;">
+<rdf:Description rdf:about="http://example.org/SemanticWeb">
+    <ex:Titel rdf:parseType="Literal">
+        <b>Semantic Web</b>
+        <br />
+        Grundlagen
+    </ex:Titel>
+</rdf:Description>
+    </textarea>
+</section>
+
+<section class="slide" id="rdf-datatypes-5">
+    <h2>Linguistic information and data types</h2>
+    <p>Language information affect only untyped literals</p>
+    <p>Example:</p>
+    <textarea class="code" mode="xml" style="display: none;">
+<rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig">
+        <rdfs:label xml:lang="de">Leipzig</rdfs:label>
+        <rdfs:label xml:lang="ru">Лейпциг</rdfs:label>
+</rdf:Description>
+    </textarea>
+    <textarea class="code" mode="xml" style="display: none;">
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+http://dbpedia.org/resource/Leipzig     rdfs:label     "Leipzig"@de ,
+                                        rdfs:label     "Лейпциг"@ru
+    </textarea>
+</section>
+
+<section class="slide" id="rdf-datatypes-6">
+    <h2>Linguistic information and data types</h2>
+    <p>by RDF specification accordingly, the following literals are different but often (according to intuition) as equally implemented.</p>
+    <textarea class="code" mode="xml" style="display: none;">
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+
+dbr:Leipzig     rdfs:label      "Leipzig" ,
+                                "Leipzig"@de ,
+                                "Leipzig"^^xsd:string .
+    </textarea>
+</section>
+
+<!-- 
+Blank Nodes
+-->
+<section class="slide" id="rdf-bnodes-0">
+    <h2>Agenda</h2>
+    <ol>
+        <li>Introduction and motivation</li>
+        <li>URIs and IRIs</li>
+        <li>RDF data model</li>
+        <li>RDF Syntax</li>
+        <li>Data types</li>
+        <li class="redText">Blank nodes</li>
+        <li>RDF Containers</li>
+    </ol>
+</section>
+
+<section class="slide" id="rdf-bnodes-1">
+    <h2>Blank Nodes</h2>
+    <p>Blank nodes (bnodes) can be used for resources that are not named (e.g. auxiliary node)</p>
+    <p>Can be read as an existential statements</p>
+    <img src="images/bnode-ex.png">
+</section>
+
+<section class="slide" id="rdf-bnodes-2">
+    <h2>Blank Nodes</h2>
+    <p>Syntax:</p>
+    <textarea class="code" mode="xml" style="display: none;">
+@prefix ex: <http://example.org/> .
+
+ex:Chutney      ex:hasIngridient;      _:id1 .
+_:id1           ex:Ingridient          ex:greenMango;  
+                ex:amount              "450g" .
+    </textarea>
+    <p>Shortened with brackets:</p>
+    <textarea class="code" mode="xml" style="display: none;">
+@prefix ex: <http://example.org/> .
+
+ex:Chutney      ex:hasIngridient
+              [ ex:Ingridient          ex:greenMango;  
+                ex:amount              "450g" ] .
+    </textarea>
+</section>
+
+<section class="slide" id="rdf-bnodes-3">
+    <h2>Blank Nodes</h2>
+    <p>Syntax:</p>
+    <textarea class="code" mode="xml" style="display: none;">
+<rdf:Description rdf:about="http://example.org/Chutney">
+      <ex:hasIngridient rdf:nodeID="id1" />
+</rdf:Description>
+<rdf:Description rdf:nodeID="id1">
+      <ex:Ingridient rdf:resource="http://example.org/greenMango" />
+      <ex:amount>450g</ex:amount>
+</rdf:description>
+    </textarea>
+    <p>Shortened:</p>
+    <textarea class="code" mode="xml" style="display: none;">
+<rdf:Description rdf:about="http://example.org/Chutney">
+      <ex:hasIngridient rdf:parseType="Resource">
+         <ex:Ingridient rdf:resource="http://example.org/greenMango" />
+         <ex:amount>450g</ex:amount>
+      </ex:hasIngridient>
+</rdf:description>
+    </textarea>
+</section>
 
 
+<!-- 
+RDF Containers
+-->
+<section class="slide" id="rdf-containers-0">
+    <h2>Agenda</h2>
+    <ol>
+        <li>Introduction and motivation</li>
+        <li>URIs and IRIs</li>
+        <li>RDF data model</li>
+        <li>RDF Syntax</li>
+        <li>Data types</li>
+        <li>Blank nodes</li>
+        <li class="redText">RDF Containers</li>
+    </ol>
+</section>
+
+<section class="slide" id="rdf-containers-1">
+    <h2>RDF Containers</h2>
+    <p>Common data structures to enumerate as many resources (order irrelevant), eg Authors of a book</p>
+    <p>
+        Distinction between:
+        <ul>
+            <li>open lists (containers)? adding new entries possible</li>
+            <li>closed lists (collections) Adding new entries is not possible</li>
+        </ul>
+    </p>
+    <p>Can be modeled with previously presented of expression, so no additional expressiveness!</p>
+</section>
+
+<section class="slide" id="rdf-containers-2">
+    <h2>RDF Containers</h2>
+    <img src="images/list-ex.png">
+</section>
+
+<section class="slide" id="rdf-containers-3">
+    <h2>RDF Containers: Types</h2>
+    <p>
+        via rdf:type lists the root node is a list type assigned:
+        <ul>
+            <li>rdf:Seq interpretation as an ordered list (sequence)?</li>
+            <li>rdf:Bag interpretation as an unordered set in RDF encoded sequence is irrelevant?</li>
+            <li>rdf:Alt amount of alternative options usually only one entry in the list relevant</li>
+        </ul>
+    </p>
+</section>
+
+<section class="slide" id="rdf-containers-4">
+    <h2>Closed lists</h2>
+    <p>Idea: recursive decomposition of the list in the head element and (possibly empty) list of remaining</p>
+    <img src="images/list-closed.png">
+</section>
+
+<section class="slide" id="rdf-containers-5">
+    <h2>Closed lists</h2>
+    <textarea class="code" mode="xml" style="display: none;">
+@prefix ex: <http://example.org/> .
+ex:SemanticWeb  ex:Autor        
+                (ex:Hitzler  ex:Krötzsch    ex:Rudolph   ex:Sure) .
+    </textarea>
+    <textarea class="code" mode="xml" style="display: none;">
+<rdf:Description rdf:about="http://example.org/SemanticWeb">
+    <ex:Autoren rdf:parseType="Collecton">>
+        <rdf:li rdf:resource="http://www.example.org/Hitzler" />
+        <rdf:li rdf:resource="http://www.example.org/Krötzsch" />
+        <rdf:li rdf:resource="http://www.example.org/Rudolph" />
+        <rdf:li rdf:resource="http://www.example.org/Sure" />
+    </ex:Autoren>
+</rdf:Description>
+    </textarea>
+</section>
 
 
-
-
-
-
+<section class="slide" id="rdf-containers-6">
+    <h2>Closed lists</h2>
+    <textarea class="code" mode="xml" style="display: none;">
+@prefix ex: <http://example.org/> .
+ex:SemanticWeb  ex:Autor        
+                (ex:Hitzler  ex:Krötzsch    ex:Rudolph   ex:Sure) .
+    </textarea>
+    <textarea class="code" mode="xml" style="display: none;">
+<rdf:Description rdf:about="http://example.org/SemanticWeb">
+    <ex:Autoren rdf:parseType="Collecton">>
+        <rdf:li rdf:resource="http://www.example.org/Hitzler" />
+        <rdf:li rdf:resource="http://www.example.org/Krötzsch" />
+        <rdf:li rdf:resource="http://www.example.org/Rudolph" />
+        <rdf:li rdf:resource="http://www.example.org/Sure" />
+    </ex:Autoren>
+</rdf:Description>
+    </textarea>
+</section>
 
 <!-- End slides. -->
 
@@ -395,17 +1066,17 @@ RDF Data model
 
 <!-- deck.status snippet -->
 <p class="deck-status">
-	<span class="deck-status-current"></span>
-	/
-	<span class="deck-status-total"></span>
+    <span class="deck-status-current"></span>
+    /
+    <span class="deck-status-total"></span>
 </p>
 
 <!-- deck.goto snippet -->
 <form action="." method="get" class="goto-form">
-	<label for="goto-slide">Go to slide:</label>
-	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-	<datalist id="goto-datalist"></datalist>
-	<input type="submit" value="Go">
+    <label for="goto-slide">Go to slide:</label>
+    <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+    <datalist id="goto-datalist"></datalist>
+    <input type="submit" value="Go">
 </form>
 
 <!-- deck.hash snippet -->
@@ -427,11 +1098,18 @@ RDF Data model
 <script src="extensions/navigation/deck.navigation.js"></script>
 <script src="extensions/scale/deck.scale.js"></script>
 
+<!-- Plugin code -->
+<script src="extensions/codemirror/deck.codemirror.js"></script>
+
+<!-- Base codemiror code -->
+<script src="extensions/codemirror/codemirror.js"></script>
+<script src="extensions/codemirror/mode/javascript/javascript.js"></script>
+
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
-	$(function() {
-		$.deck('.slide');
-	});
+    $(function() {
+        $.deck('.slide');
+    });
 </script>
 </body>
 </html>
