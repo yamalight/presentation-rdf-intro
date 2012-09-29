@@ -43,6 +43,7 @@
 
 <section class="slide" id="agenda">
     <h2>Agenda</h2>
+    <p>Part 1:</p>
     <ol>
         <li>Introduction and motivation</li>
         <li>URIs and IRIs</li>
@@ -52,10 +53,18 @@
         <li>Blank nodes</li>
         <li>RDF Containers</li>
     </ol>
+    <p>Part 2:</p>
+    <ol>
+        <li>RDF Schema</li>
+        <li>Vocabularies</li>
+        <li>Tools</li>
+        <li>Conclusions</li>
+    </ol>
 </section>
 
 <section class="slide" id="aboutme">
     <h2>About me</h2>
+    <p>Timofey Ermilov</p>
     <ul>
         <li>
             <strong>2004-2009</strong><br/>
@@ -86,6 +95,11 @@
             Ubiquitous devices, Semantic Web and Knowledge Engineering, Adaptive Methodologies, HCI
         </li>
     </ul>
+</section>
+
+<!-- Begin PART 1. -->
+<section class="slide" id="part1">
+    <h1>PART 1</h1>
 </section>
 
 <!-- 
@@ -1054,6 +1068,659 @@ ex:SemanticWeb  ex:Autor
 </rdf:Description>
     </textarea>
 </section>
+
+
+<!-- Begin PART 2. -->
+<section class="slide" id="part2">
+    <h1>PART 2</h1>
+</section>
+
+<!--
+RDF Schema
+-->
+<section class="slide" id="rdfs-0">
+    <h2>Agenda</h2>
+    <ol>
+        <li class="redText">RDF Schema</li>
+        <li>Vocabularies</li>
+        <li>Tools</li>
+    </ol>
+</section>
+
+<section class="slide" id="rdfs-1">
+    <h2>RDF</h2>
+    <p>RDF provides universal way to encode data on the Web:</p>
+    <textarea class="code" mode="xml" style="display: none;">
+<http://example.org/SemanticWeb> <http://example.org/publishedBy> <http://www.springer.com/Publisher> .
+    </textarea>
+    <p>Statements about individual resources (individuals) and their relationships</p>
+</section>
+
+<section class="slide" id="rdfs-2">
+    <h2>RDF</h2>
+    <p>
+        Allows the description of facts, but:
+        <ul>
+            <li>No typeing</li>
+            <li>No description of the characteristics and properties of classes</li>
+        </ul>
+    </p>
+    <p>
+        Questions:
+        <ul>
+            <li>Typing?</li>
+            <li>Hierarchies?</li>
+            <li>Properties?</li>
+            <li>Lists?</li>
+            <li>Inference?</li>
+            <li>…</li>
+        </ul>
+    </p>
+</section>
+
+<section class="slide" id="rdfs-3">
+    <h2>Schemawissen mit RDFS</h2>
+    <p>Aussagen über generische Mengen von Individuen (Klassen), z.B. Verlage, Personen, Organisationen, etc.</p>
+    <p>Spezifikation der logischen Zusammenhänge zwischen Individuen, Klassen und Beziehungen     "Verlage sind Organisationen.""Nur Personen schreiben Bücher."</p>
+    <p>in Datenbanksprache: Schemawissen</p>
+</section>
+
+<section class="slide" id="rdfs-4">
+    <h2>Schema knowledge with RDFS</h2>
+    <p>RDF Schema (RDFS): part of the W3C recommendation for RDF </p>
+    <p>Allows specification of schematic (also: terminological) knowledge </p>
+    <p>Special RDF-vocabulary (ie: every RDFS document is an RDF document) </p>
+    <p>Namespace (usually abbreviated as "rdfs:") : http://www.w3.org/2000/01/rdf-schema# </p>
+</section>
+
+<section class="slide" id="rdfs-5">
+    <h2>Schema knowledge with RDFS</h2>
+    <p>
+        RDF Schema (RDFS):
+        <ul>
+            <li>
+                Vocabulary is not thematized (as in FOAF), but generically (in terms of re-use)
+            </li>
+            <li>
+                Allows the specification of (parts of) the semantics of arbitrary RDF-vocabularies (that is a kind of "Metavokabular")
+            </li>
+            <li>
+                Advantage is that the software with RDFS support interprets each defined by means of RDFS vocabulary correctly
+            </li>
+            <li>
+                Functionality makes RDFS into an ontology (lightweight ontology)
+            </li>
+            <li>„A little semantics goes a long way.“</li>
+        </ul>
+    </p>
+</section>
+
+<section class="slide" id="rdfs-6">
+    <h2>RDF-S Instances</h2>
+    <p>Instances can be assigned to one or more classes:</p>
+    <img src="images/rdfs-instances-ex.png" style="max-height: 60%;">
+    <textarea class="code" mode="n3" style="display: none;">
+Boddingtons rdf:type    Ale
+Grafentrunk rdf:type    Bock
+Hoegaarden  rdf:type    White
+Jever       rdf:type    Pilsner 
+    </textarea>
+</section>
+
+<section class="slide" id="rdfs-7">
+    <h2>Classes and Instances</h2>
+    <p>Typing of resources already in RDF to identify lists:</p>
+    <img src="images/rdfs-lists.png" style="max-height: 60%;">
+    <p>Predicate <i>rdf:type</i> has the subject to the object as type</p>
+    <p>Object perceived as both a class that belongs to the resource identified by the subject (as a so-called instance)</p>
+</section>
+
+<section class="slide" id="rdfs-8">
+    <h2>Classes and Instances</h2>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:SemanticWeb  rdf:type  ex:Lecture .
+    </textarea>
+    <p>Characterizes the "Semantic Web" as an instance of the (newly defined) class "Lecture"</p>
+    <p>Class membership is not exclusive, e.g. with o.g. Triples simultaneously:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:SemanticWeb  rdf:type  ex:Fun .
+    </textarea>
+    <p>General: a priori possible syntactically no clear distinction between individuals and class identifiers</p>
+    <p>In reality characterization sometimes difficult, for example: http://www.un.org/#URI</p>
+</section>
+
+<section class="slide" id="rdfs-9">
+    <h2>The Class of all classes</h2>
+    <p>However, sometimes unique identifier of a URI as a desirable class identifier</p>
+    <p>Possible by typing the relevant URI as rdfs:Class</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Lecture   rdf:type   rdfs:Class .
+    </textarea>
+    <p>rdfs:Class is therefore the "Class of all classes" and thus also contains itself, ie the following triple is always true:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+rdfs:Class   rdf:type   rdfs:Class .
+    </textarea>
+</section>
+
+<section class="slide" id="rdfs-9">
+    <h2>Subclasses - Motivation</h2>
+    <p>Given triple</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:SemanticWeb  rdf:type  ex:Lecture .
+    </textarea>
+    <p>Problem: finding instances of class ex:Course provides no result</p>
+    <p>Possibility: Adding triples</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:SemanticWeb  rdf:type  ex:Course .
+    </textarea>
+    <p>Solves the problem but only for a resource ex:SemanticWeb</p>
+    <p>Automatically adding all instances leads to unnecessarily large RDF documents</p>
+</section>
+
+<section class="slide" id="rdfs-10">
+    <h2>Subclasses</h2>
+    <p>It makes sense: one statement that every course is a course, i.e. each instance of the class ex:Lecture is automatically an instance of class ex:Course</p>
+    <p>Realized by the <i>rdfs:subClassOf</i> Property:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Lecture   rdfs:subClassOf   ex:Course .
+    </textarea>
+    <p>"The Class of classes is a subclass of Class of classes."</p>
+</section>
+
+<section class="slide" id="rdfs-11">
+    <h2>Subclasses</h2>
+    <p>rdfs:subClassOf property is reflexive, that is each class is a subclass of itself, so that e.g. applies:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Lecture   rdfs:subClassOf   ex:Lecture .
+    </textarea>
+    <p>Conversely, establishing the equality of two classes through mutual relationship classes, such as:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Hospital  rdfs:subClassOf    ex:Clinic .
+ex:Clinic    rdfs:subClassOf    ex:Hospital .
+    </textarea>
+</section>
+
+<section class="slide" id="rdfs-12">
+    <h2>Class hierarchies</h2>
+    <p>Common: not only individual subclass relations but entire class hierarchies (also: taxonomies) for example:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Textbook      rdfs:subClassOf    ex:Book .
+ex:Book          rdfs:subClassOf    ex:Substrate .
+ex:Journal       rdfs:subClassOf    ex:Substrate .
+    </textarea>
+    <p>rdfs:subClassOf property, that is it follows automatically</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Textbook      rdfs:subClassOf    ex:Substrate .
+    </textarea>
+</section>
+
+<section class="slide" id="rdfs-13">
+    <h2>Class hierarchies</h2>
+    <p>Class hierarchies particularly pronounced in some biology (e.g., classification of living things) as zoological classification of modern humans:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+@prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex:<http://www.example.com/#> .
+
+ex:Animalia     rdf:type        rdfs:Class;
+                rdfs:label      "Animals" .
+ex:Chordates    rdfs:subClassOf ex:Animalia;
+                rdfs:label      "Chordates" .
+ex:Mammalia     rdfs:subClassOf ex:Chordates;
+                rdfs:label      "Mammals" .
+ex:Primates     rdfs:subClassOf ex:Mammalia; 
+                rdfs:label      "Primates" .
+ex:Hominidae    rdfs:subClassOf ex:Primates;
+                rdfs:label      "Hominids" .
+ex:Homo         rdfs:subClassOf ex:Primates;
+                rdfs:label      "Homo" .
+ex:HomoSapiens  rdfs:subClassOf ex:Homo;
+                rdfs:label      "Modern man"@de .
+
+ex:Tim          ex:isA          ex:HomoSapiens .
+    </textarea>
+</section>
+
+<section class="slide" id="rdfs-14">
+    <h2>Classes</h2>
+    <p>Parallel intuitive to set theory:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+rdf:type           corresponds to    ∈
+rdfs:subClassOf    corresponds to    ⊆
+    </textarea>
+    <p>justifies, for example, the reflexivity and transitivity of subClassOf</p>
+</section>
+
+<section class="slide" id="rdfs-15">
+    <h2>Predefined class identifiers</h2>
+    <p>
+        <strong>rdfs:Resource</strong><br/>
+        class of all resources (ie all elements of the subject area)
+    </p>
+    <p>
+        <strong>rdf:Property</strong><br/>
+        class of all relations (= the resources that are referenced by predicate URIs)
+    </p>
+    <p>
+        <strong>rdf:List, rdf:Seq, rdf:Bag, rdf:Alt</strong><br/>
+        container classes of different types of lists
+    </p>
+    <p>
+        <strong>rdfs:ContainerMembershipProperty</strong>
+        Class all relationships that represent a containment relationship
+    </p>
+</section>
+
+<section class="slide" id="rdfs-16">
+    <h2>Predefined class identifiers</h2>
+    <p>
+        <strong>rdf:XMLLiteral</strong><br/>
+        class of all values ​​of the predefined data type XMLLiteral
+    </p> 
+    <p>
+        <strong>rdfs:Literal</strong><br/>
+        class of literal values ​​(ie contains all data types as subclasses)
+    </p> 
+    <p>
+        <strong>rdfs:Datatype</strong><br/>
+        class of all data types (So as rdfs:Class a class of classes)
+    </p> 
+    <p>
+        <strong>rdf:Statement</strong><br/>
+        class of reified statements
+    </p> 
+</section>
+
+<section class="slide" id="rdfs-17">
+    <h2>Properties</h2>
+    <p>
+        Other names: relationships, relationships 
+        Attention: properties attached to RDF(S) is not assigned (as in OOP) special classes
+    </p>
+    <p>
+        Property identifier into triples usually predicate to characterize site, stand on the nature of the two resources correlate
+    </p>
+    <p>
+        mathematically often represented as a set of pairs: 
+        married = {(Adam and Eve), (Brad and Angelina), ...}
+    </p>
+    <p>
+        URI is identified as a property identifier by appropriate Typung:
+    </p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:publishedBy   rdf:type   rdf:Property .
+    </textarea>
+</section>
+
+<section class="slide" id="rdfs-18">
+    <h2>Subproperties</h2>
+    <p>Similar to super- / subclasses and super- / subproperty changes conceivable and meaningful</p>
+    <p>Representation in RDFS using rdfs:subPropertyOf example:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:happilyMarried   rdf:subPropertyOf   rdf:married.
+    </textarea>
+    <p>allowed out of the triples</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Markus   ex:happilyMarried   ex:Anna .
+    </textarea>
+    <p>to conclude that</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Markus   ex:married   ex:Anna .
+    </textarea>
+</section>
+
+<section class="slide" id="rdfs-19">
+    <h2>Restriction of Properties</h2>
+    <p>Common: Property may make sense to connect only certain resources, such as combines ex:publishedBy only publications with publishers</p>
+    <p>i.e. URIs for all a, b ​​follows from the triple:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+a   ex:publishedBy   b .
+    </textarea>
+    <p>that is:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+a   rdf:type   ex:Publication .
+b   rdf:type   ex:Publisher .
+    </textarea>
+    <p>can be directly encoded in RDFS:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:publishedBy   rdfs:domain   ex:Publication .
+ex:publishedBy   rdfs:range    ex:Publisher .
+    </textarea>
+    <p>Also to specify data types for literals:</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:hasAge     rdfs:range    xsd:nonNegativeInteger .
+    </textarea>
+</section>
+
+<section class="slide" id="rdfs-19">
+    <h2>Restriction of Properties</h2>
+    
+    <p>Property restrictions are the only way to specify semantic relationships between property changes and classes</p>
+    <p>Note: Property constraints are global and conjunctively, eg</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:authorOf   rdfs:range   ex:Cookbook   .
+ex:authorOf   rdfs:range   ex:Storybook  . 
+    </textarea>
+    <p>therefore: as domain / range always use general possible class</p>
+</section>
+
+<section class="slide" id="rdfs-20">
+    <h2>Domain and Range</h2>
+    <p>Properties are defined independently of classes</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:hasAlcoholicContent   rdfs:domain         ex:Beer
+ex:hasAlcoholicContent   rdfs:range          xsd:float
+ex:hasAlcoholicContent   rdfs:subPropertyOf  ex:hasContent 
+ex:brews   rdf:type      owl:ObjectProperty
+ex:brews   rdfs:domain   ex:Brewery
+ex:brews   rdfs:range    ex:Beer
+    </textarea>
+    <p>Domain: link with one or more classes</p>
+    <p>Range: defined values​​, which may take the property</p>
+    <p>Instances of a particular class</p>
+    <p>Literals, for example typed by XML Schema datatypes</p> 
+</section>
+
+<section class="slide" id="rdfs-21">
+    <h2>RDFS Class & Property Hierarchies</h2>
+    <img src="images/rdfs-classes-props.png">
+</section>
+
+<!--
+Vocaburies
+-->
+<section class="slide" id="vocabs-0">
+    <h2>Agenda</h2>
+    <ol>
+        <li>RDF Schema</li>
+        <li class="redText">Vocabularies</li>
+        <li>Tools</li>
+    </ol>
+</section>
+
+<section class="slide" id="vocabs-1">
+    <h2>FOAF (Friend-of-a-Friend)</h2>
+    <img src="images/foaf.png">
+    <p>defines classes and properties for representing information about people and their relationships</p>
+    <textarea class="code" mode="n3" style="display: none;">
+ex:Tim   rdf:type         foaf:Person
+ex:Tim   currentProject   http://OntoWiki.net
+ex:Tim   foaf:homepage    http://bis.informatik.uni-leipzig.de/TimofeyErmilov
+ex:Tim   foaf:knows       http://sebastian.tramp.name/
+    </textarea>
+    <img src="images/foaf-voc.png">
+</section>
+
+<section class="slide" id="vocabs-2">
+    <h2>SIOC (Semantically Interlinked Online Communities) Vocabulary</h2>
+    <p>Represent content from Blogs, Wikis, Forums, Mailinglists, Chats etc.</p>
+    <img src="images/sioc.png">
+</section>
+
+<section class="slide" id="vocabs-3">
+    <h2>SKOS (Simple Knowledge Organization System)</h2>
+    <p>support the use of thesauri, classification schemes, subject heading systems and taxonomies</p>
+    <img src="images/skos.png">
+</section>
+
+<section class="slide" id="vocabs-4">
+    <h2>VoID (Vocabulary on Interlinked Datasets)</h2>
+    <img src="images/void.png">
+</section>
+
+<section class="slide" id="vocabs-5">
+    <h2>Data Cube</h2>
+    <img src="images/datacube.png">
+</section>
+
+<!--
+Tools
+-->
+<section class="slide" id="tools-0">
+    <h2>Agenda</h2>
+    <ol>
+        <li>RDF Schema</li>
+        <li>Vocabularies</li>
+        <li class="redText">Tools</li>
+    </ol>
+</section>
+
+<section class="slide" id="tools-stores">
+    <h2>Triple / Quad Stores</h2>
+    <p>Supported open-source and commercial versions as well as hosted services available:</p>
+    <ul>
+        <li>Commercial:
+            <a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> (Franz),
+            <a href="http://www.ontotext.com/owlim/editions">OWLIM</a> (OntoText),
+            <a href="http://virtuoso.openlinksw.com/">Virtuoso</a> (OpenLink),
+            <a href="http://stardog.com/">Stardog</a>, (ClarkParsia),
+            &hellip;
+        </li>
+        <li>Open Source:
+            <strong><a href="http://www.openlinksw.com/wiki/main/Main">Virtuoso OpenSource</a></strong>,
+            <a href="http://4store.org/">4store</a>,
+            <a href="http://www.mulgara.org/">Mulgara</a>,
+            <a href="http://www.aelius.com/njh/redstore/">redstore</a>,
+            &hellip;
+        </li>
+        <li>Hosted services:
+            <strong><a href="http://dydra.com/">Dydra</a></strong>,
+            <a href="http://www.talis.com/platform/">Talis platform</a>,
+            &hellip;
+        </li>
+    </ul>
+</section>
+
+<div class="slide" id="tools-virtuoso">
+    <h2>Virtuoso</h2>
+    <p></p>
+    <ul>
+        <li>Commercial and OpenSource license available</li>
+        <li>Written in C++ and based on a SQL backend</li>
+        <li>Part of the Semantic Desktop / KDE project</li>
+        <li>Available on any Debian-based installation</li>
+        <li>Quad-store with integrated application server</li>
+        <li>Integrated Linked Data Deployment</li>
+        <li>DAV, RDF Spongers, WebID support, &hellip;</li>
+    </ul>
+</div>
+
+<section class="slide" id="tools-virtuoso-conductor">
+    <h2>Virtuoso Conductor</h2>
+    <figure>
+        <a href="images/virtuoso-conductor.png"><img class="twothird center" src="images/virtuoso-conductor.png"></a>
+        <figcaption>Virtuoso OpenSource 6.1.3: Conductor web interface
+        </figcaption>
+    </figure>
+</section>
+
+
+<section class="slide" id="tools-dydra">
+    <h2>Dydra</h2>
+    <blockquote>
+        <p>Our goal is to develop the github for graph data.</p>
+        <cite><a href="http://ar.to/">Arto Bendiken</a>, 10/2010</cite>
+    </blockquote>
+    <ul>
+        <li>cloud service for RDF storage and querying</li>
+        <li>Basic but nice HTML front-end (e.g. query shell)</li>
+        <li>APIs for Java, Perl, PHP, ...</li>
+        <li>Database layer as a <a href="http://en.wikipedia.org/wiki/Content-addressable_storage">content-addressable storage</a></li>
+
+    </ul>
+</section>
+
+
+<section class="slide" id="tools-dydra-queryshell">
+    <h2>Dydra Query Shell</h2>
+    <figure>
+        <a href="images/dydra-query.png"><img class="twothird center" src="images/dydra-query.png"></a>
+        <figcaption><a href="http://dydra.com">dydra.com</a>: standard query shell
+        </figcaption>
+    </figure>
+</section>
+
+<section class="slide" id="tools-fox">
+    <h2>Extraction: FOX</h2>
+    <depiction class="ahalf right">
+        <img class="center" src="http://lh3.ggpht.com/-d79marTMEUo/TlzV1DPGXZI/AAAAAAAAApY/HOpg8PyJT0o/s800/fox.png">
+    </depiction>
+    <p>Federated Knowledge Extraction Framework</p>
+    <ul>
+        <li>Input in natural language text files</li>
+        <li>Extracts RDF triples</li>
+        <li>Integrates the Linked Data Cloud</li>
+        <li>Merges the result of Named Entity Recognition, Keyword Extraction and Relation Extraction tools</li>
+    </ul>
+</section>
+
+<section class="slide" id="tools-fox-example-input">
+    <h2>FOX Example Input</h2>
+    <blockquote>The foundation of the University of Leipzig in 1409 initiated the city's development into a centre of German law and the publishing industry. The philosopher and mathematician Gottfried Leibniz was born in Leipzig in 1646, and attended the university from 1661–1666.
+    </blockquote>
+</section>
+
+<section class="slide" id="tools-fox-example-output">
+    <h2>FOX Example Output</h2>
+    <pre>[] a ann:Annotation , scmsann:ORGANIZATION ;
+     scms:beginIndex "22"^^xsd:int ;
+     scms:endIndex "43"^^xsd:int ;
+     scms:means dbpedia:University_of_Leipzig ;
+     scms:source &lt;http://ns.aksw.org/scms/tools/FOX&gt; ;
+     ann:body "University of Leipzig"^^xsd:string .</pre>
+    This could be used to add
+    <pre>:mySource foaf:topic dbpedia:University_of_Leipzig</pre>
+    to the metadata of <code>:mySource</code>.
+</section>
+
+<section class="slide" id="tools-limes">
+    <h2>Enrichment: LIMES</h2>
+    <depiction class="ahalf right">
+        <img class="center" src="http://lh4.ggpht.com/-u3xaJ9mAcfY/TlzV1f0OluI/AAAAAAAAApU/z0V6VURN_tI/s800/limes.png">
+    </depiction>
+    <p>LIMES is a link discovery framework for the Web of Data</p>
+    <ul>
+        <li>implements time-efficient approaches for large-scale link discovery</li>
+        <li>based on the characteristics of metric spaces</li>
+        <li>easily configurable via a web interface</li>
+    </ul>
+</section>
+
+<section class="slide" id="tools-limes-interface">
+    <h2>LIMES Webinterface</h2>
+    <figure class="twothird center">
+    <a href="images/colanut.png">
+        <img class="center" src="images/colanut.png">
+        <figcaption>limes.aksw.org</figcaption>
+    </a>
+    </figure>
+</section>
+
+<section class="slide" id="tools-protege">
+    <h2>Editing: Protégé</h2>
+    <blockquote>a free, open source ontology editor and knowledge-base framework.</blockquote>
+    <ul>
+        <li>Java Swing desktop application (Web-based Protégé as beta release)</li>
+        <li>Very long development history beyond the existence of RDF</li>
+        <li>Large plugin repository (backends, import / export, &hellip;)</li>
+        <li>Strong support for reasoning and ontology engineering</li>
+        <li>Strong support instance editing forms / knowledge acquisition</li>
+    </ul>
+</section>
+
+<section class="slide" id="tools-topbraid-interface">
+    <h2>Protégé</h2>
+    <figure class="twothird center">
+    <a href="images/Protege.png">
+        <img class="center" src="images/Protege.png">
+        <figcaption>Protégé</figcaption>
+    </a>
+    </figure>
+</section>
+
+<section class="slide" id="tools-topbraid">
+    <h2>Editing: TopBraid Composer</h2>
+    <blockquote>a modelling environment for developing Semantic Web ontologies and building semantic applications</blockquote>
+    <ul>
+        <li>Implemented as an Eclipse plug-in</li>
+        <li>Target user: Enterprise knowledge worker and developer</li>
+        <li>Strong support of SPARQL and SPARQL based rules (<a href="http://www.w3.org/Submission/2011/SUBM-spin-modeling-20110222/">SPARQL Inferencing Notation - SPIN</a>)</li>
+        <li>Integration with Sesame and other Triple Stores</li>
+        <li>Extensible via a published API</li>
+    </ul>
+</section>
+
+<section class="slide" id="tools-topbraid-interface">
+    <h2>TopBraid Composer</h2>
+    <figure class="twothird center">
+    <a href="images/TopBraid.png">
+        <img class="center" src="images/TopBraid.png">
+        <figcaption>Topbraid Composer</figcaption>
+    </a>
+    </figure>
+</section>
+
+<section class="slide" id="tools-smw">
+    <h2>Collaboration: Semantic Media Wiki</h2>
+    <ul>
+        <li>PHP Wiki engine based on the wikipedia wiki</li>
+        <li>Special syntax for typed links (object properties)</li>
+        <li>Automatically-generated lists</li>
+        <li>Semantic Templates for knowledge acquisition</li>
+        <li>Resources and wiki pages are the same (problematic)</li>
+        <li>Very active community which support multiple plugins</li>
+    </ul>
+    <pre>
+Sebastian [[knows::Tilo]] since two years.
+    </pre>
+</section>
+
+<section class="slide" id="tools-ontowiki">
+    <h2>Collaboration: OntoWiki</h2>
+    <p></p>
+    <ul>
+        <li>Not a wiki with semantic extension but a wiki-like knowledge acquisition framework</li>
+        <li>Works directly on a triple/quad store (e.g. Virtuoso) via SPARQL/Update</li>
+        <li>Provides Linked Data Resource and a SPARQL Endpoint</li>
+        <li>Graph-based access control</li>
+        <li>Extensible Editing Widgets (e.g. for specific datatypes or properties)</li>
+        <li>Supports inter-resource communication with <a href="http://aksw.org/Projects/SemanticPingback">Semantic Pingback</a></li>
+    </ul>
+</section>
+
+
+<section class="slide" id="tools-ontowiki-interface">
+    <h2>OntoWiki</h2>
+    <figure class="twothird center">
+    <a href="images/OntoWiki.png">
+        <img class="center" src="images/OntoWiki.png">
+        <figcaption>OntoWiki</figcaption>
+    </a>
+    </figure>
+</section>
+
+
+<section class="slide" id="tools-more">
+    <h2>More Tools</h2>
+    <p>If we still have time &hellip;</p>
+    <ul>
+        <li><a href="http://hanne.aksw.org/">HANNE</a> - Holistic application for navigational knowledge engineering</li>
+        <li><a href="http://www.visualdataweb.org/relfinder.php">RelFinder</a> - Interactive Relationship Discovery in RDF Data</li>
+        <li><a href="http://www.visualdataweb.org/gfacet.php">gFacet</a> - Graph-based Faceted Exploration of RDF Data</li>
+        <li><a href="http://www.w3.org/2000/10/swap/doc/cwm.html">CWM</a> - general-purpose data processor for the semantic web</li>
+        <li><a href="http://prefix.cc/">prefix.cc</a> - namespace lookup for RDF developers</li>
+        <li><a href="http://www.w3.org/2005/ajar/tab">Tabulator</a> - a generic data browser and editor</li>
+    </ul>
+</section>
+
+<!-- 
+THE END
+-->
+<section class="slide" id="end">
+    <h2>Thank you for your Attention!</h2>
+    <h1>QUESTIONS?</h1>
+</section>
+
 
 <!-- End slides. -->
 
