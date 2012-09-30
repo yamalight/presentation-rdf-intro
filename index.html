@@ -27,9 +27,9 @@
     <!-- Required Modernizr file -->
     <script src="modernizr.custom.js"></script>
 
-    <!-- codemirror -->
-    <link rel="stylesheet" href="extensions/codemirror/deck.codemirror.css">
-    <link rel="stylesheet" href="extensions/codemirror/themes/default.css">
+    <!-- syntax highlight -->
+    <link rel="stylesheet" href="syntax/shCore.css">
+    <link rel="stylesheet" href="syntax/shThemeDefault.css">
 
     <!-- My custom styles -->
     <link rel="stylesheet" href="main.css">
@@ -39,27 +39,6 @@
 <!-- Begin slides. -->
 <section class="slide" id="start">
     <h1>Intoduction to RDF and the Web of Data</h1>
-</section>
-
-<section class="slide" id="agenda">
-    <h2>Agenda</h2>
-    <p>Part 1:</p>
-    <ol>
-        <li>Introduction and motivation</li>
-        <li>URIs and IRIs</li>
-        <li>RDF data model</li>
-        <li>RDF Syntax</li>
-        <li>Data types</li>
-        <li>Blank nodes</li>
-        <li>RDF Containers</li>
-    </ol>
-    <p>Part 2:</p>
-    <ol>
-        <li>RDF Schema</li>
-        <li>Vocabularies</li>
-        <li>Tools</li>
-        <li>Conclusions</li>
-    </ol>
 </section>
 
 <section class="slide" id="aboutme">
@@ -76,7 +55,7 @@
         <li>
             <strong>2010-now</strong><br/>
             University of Leipzig, Institute of Computer Science<br/>
-            Research Group Agile Knowledge Engineering and Semantic Web<br/>
+            Research Group "Agile Knowledge Engineering and Semantic Web" (AKSW)<br/>
             PhD Student
         </li>
         
@@ -97,6 +76,27 @@
     </ul>
 </section>
 
+<section class="slide" id="agenda">
+    <h2>Agenda</h2>
+    <p>Part 1:</p>
+    <ol>
+        <li>Introduction and motivation</li>
+        <li>URIs and IRIs</li>
+        <li>RDF data model</li>
+        <li>RDF syntax</li>
+        <li>Data types</li>
+        <li>Blank nodes</li>
+        <li>RDF Containers</li>
+    </ol>
+    <p>Part 2:</p>
+    <ol>
+        <li>RDF Schema</li>
+        <li>Vocabularies</li>
+        <li>Tools</li>
+        <li>Conclusions</li>
+    </ol>
+</section>
+
 <!-- Begin PART 1. -->
 <section class="slide" id="part1">
     <h1>PART 1</h1>
@@ -111,60 +111,61 @@ INTRODUCTION AND MOTIVATION
         <li class="redText">Introduction and motivation</li>
         <li>URIs and IRIs</li>
         <li>RDF data model</li>
-        <li>RDF Syntax</li>
+        <li>RDF syntax</li>
         <li>Data types</li>
         <li>Blank nodes</li>
-        <li>RDF Containers</li>
+        <li>RDF containers</li>
     </ol>
 </section>
 
 <section class="slide" id="into-1">
     <h2>Introduction and motivation</h2>
     <p>Tim Ermilov is teaching Introduction to RDF course.</p>
-    <textarea class="code" mode="xtml" style="display: none;" class="slide forceOpacity" id="into-1.1">
+    <pre class="brush: xml" id="into-1.1">
 &lt;course name="Introduction to RDF"&gt;
     &lt;lecturer&gt;Tim Ermilov&lt;/lecturer&gt;
-&lt;/course&gt;</textarea>
+&lt;/course&gt;
+    </pre>
     <p class="slide" id="into-1.2">Can you spot the problem in this representation?</p>
 </section>
 
 <section class="slide" id="into-2">
-    <h3>Introduction and motivation</h3>
+    <h2>Introduction and motivation</h2>
     <p>Tim Ermilov is teaching Introduction to RDF course.</p>
-    <textarea class="code" mode="text/xml" style="display: none;">
+    <pre class="brush: xml">
 &lt;course name="Introduction to RDF"&gt;
     &lt;lecturer&gt;Tim Ermilov&lt;/lecturer&gt;
 &lt;/course&gt;
-    </textarea>
-    <textarea class="code" mode="xml" style="display: none;" class="slide forceOpacity" id="into-2.1">
+    </pre>
+    <pre class="brush: xml">
 &lt;lecturer name="Tim Ermilov"&gt;
     &lt;teaches&gt;Introduction to RDF&lt;/teaches&gt;
 &lt;/lecturer&gt;
-    </textarea>
+    </pre>
     <p class="slide" id="into-2.2">There is no standard way of assigning meaning to tag nesting.</p>
 </section>
 
 <section class="slide" id="into-3">
-    <h3>Introduction and motivation</h3>
+    <h2>Introduction and motivation</h2>
     <p>A lecturer is a subclass of an academic staff member.</p>
-    <textarea class="code" mode="xml" style="display: none;" class="slide forceOpacity" id="into-3.0">
+    <pre class="brush: xml">
 &lt;academicStaffMember&gt;Sören Auer&lt;/academicStaffMember&gt;
-    </textarea>
-    <textarea class="code" mode="xml" style="display: none;" class="slide forceOpacity" id="into-3.1">
+    </pre>
+    <pre class="brush: xml">
 &lt;professor&gt;Klaus-Peter Fähnrich&lt;/professor&gt;
-    </textarea>
-    <textarea class="code" mode="xml" style="display: none;" class="slide" id="into-3.2">
+    </pre>
+    <pre class="brush: xml">
 &lt;course name=“Introduction to RDF"&gt;
     &lt;isTaughtBy&gt;Tim Ermilov&lt;/isTaughtBy&gt;
 &lt;/course&gt;
-    </textarea>
+    </pre>
 </section>
 
 <section class="slide" id="into-4">
-    <h3>Introduction and motivation</h3>
+    <h2>Introduction and motivation</h2>
     <p>Retrieve all the members of the academic staff.</p>
     <p class="slide" id="into-4.1">
-        Example Xpath query: //academicStaffMember
+        Example Xpath query: <strong>//academicStaffMember</strong>
     </p>
     <p class="slide" id="into-4.2">
         Only result: Sören Auer.
@@ -188,10 +189,10 @@ URIs
         <li>Introduction and motivation</li>
         <li class="redText">URIs and IRIs</li>
         <li>RDF data model</li>
-        <li>RDF Syntax</li>
+        <li>RDF syntax</li>
         <li>Data types</li>
         <li>Blank nodes</li>
-        <li>RDF Containers</li>
+        <li>RDF containers</li>
     </ol>
 </section>
 
@@ -200,13 +201,13 @@ URIs
     <ul>
         <li>URI = <strong>Uniform Resource Identifier</strong></li>
         <li class="slide" id="uri-1.1">
-            Serves as a global unique identifier of resource
+            Serves as a global unique identifier of a resource
         </li>
         <li class="slide" id="uri-1.2">
             Any object which has a clear identity can be a resource (e.g. books, places, people, abstract concepts, etc.)
         </li>
         <li class="slide" id="uri-1.2">
-            Similar thing already exists in certain domains: ISBN for books
+            Similar thing already exists in certain domains: e.g. ISBN for books
         </li>
     </ul>
 </section>
@@ -222,9 +223,6 @@ URIs
             Begins with the the URI scheme separated by ":" from the subsequent part (eg: http, ftp, mailto)
         </li>
         <li class="slide" id="uri-2.2">
-            Any object which has a clear identity can be a resource (e.g. books, places, people, abstract concepts, etc.)
-        </li>
-        <li class="slide" id="uri-2.3">
             Every URI consists of four parts, as follows:<br/>
             <code> Scheme : Hierarchy [ ? Query ] [ # Fragment ] </code>
         </li>
@@ -289,7 +287,7 @@ Other IDs
         </li>
         <li class="slide" id="urn-1.4">
             Example:<br/>
-            URN of "Science of Computer Programming" journal - <strong>urn:issn:0167-6423</strong>
+            URN of "Science of Computer Programming" journal - <strong>issn:0167-6423</strong>
         </li>
     </ul>
 </section>
@@ -321,7 +319,7 @@ Other IDs
         </li>
         <li class="slide" id="doi-1.1">
             DOI is a unique and permanent identifier for digital objects.<br/>
-            Mainly used for on-line articles and scientific journals.
+            Mainly used for online articles and scientific journals.
         </li>
         <li class="slide" id="doi-1.2">
             Example:<br/>
@@ -339,10 +337,10 @@ RDF Data model
         <li>Introduction and motivation</li>
         <li>URIs and IRIs</li>
         <li class="redText">RDF data model</li>
-        <li>RDF Syntax</li>
+        <li>RDF syntax</li>
         <li>Data types</li>
         <li>Blank nodes</li>
-        <li>RDF Containers</li>
+        <li>RDF containers</li>
     </ol>
 </section>
 
@@ -353,14 +351,14 @@ RDF Data model
     <p class="slide" id="rdfdm-1.1">
         W3C Recommendation (<a href="http://www.w3.org/RDF">http://www.w3.org/RDF</a>)
     </p>
-    <p class="slide" id="rdfdm-1.2">
+    <p class="slide forceOpacity" id="rdfdm-1.2">
         RDF is a data model
     </p>
     <ul>
-        <li class="slide" id="rdfdm-1.3">
+        <li class="slide forceOpacity" id="rdfdm-1.3">
             Originally was made to provide metadata for Web resources
         </li>
-        <li class="slide" id="rdfdm-1.4">
+        <li class="slide forceOpacity" id="rdfdm-1.4">
             Coded structured information
         </li>
         <li class="slide" id="rdfdm-1.5">
@@ -371,7 +369,6 @@ RDF Data model
 
 <section class="slide" id="rdf-components">
     <h2>Components of RDF graph</h2>
-    
     <ul>
         <li>
             <h3>URI</h3>
@@ -394,8 +391,7 @@ RDF Data model
 
 <section class="slide" id="rdf-ex">
     <h2>Example of RDF graph</h2>
-
-    <!-- <div id="graph-ex"></div> -->
+    
     <img src="images/rdf-ex.png">
 </section>
 
@@ -403,7 +399,7 @@ RDF Data model
     <h2>Literals</h2>
 
     <p>Used for the representation of data values</p>
-    <p>View as strings</p>
+    <p>Viewed as strings</p>
     <p>Interpretation is done by data type</p>
     <p>Literals without data type will be treated as strings</p>
     <img src="images/rdf-ex-literals.png">
@@ -1765,17 +1761,19 @@ THE END
 <script src="extensions/navigation/deck.navigation.js"></script>
 <script src="extensions/scale/deck.scale.js"></script>
 
-<!-- Plugin code -->
-<script src="extensions/codemirror/deck.codemirror.js"></script>
-
-<!-- Base codemiror code -->
-<script src="extensions/codemirror/codemirror.js"></script>
-<script src="extensions/codemirror/mode/javascript/javascript.js"></script>
+<!-- syntax highlight -->
+<script type="text/javascript" src="syntax/shCore.js"></script>
+<script type="text/javascript" src="syntax/shBrushTurtle.js"></script>
+<script type="text/javascript" src="syntax/shBrushXml.js"></script>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
     $(function() {
+        // create slides
         $.deck('.slide');
+
+        // highlight stuff
+        SyntaxHighlighter.all();
     });
 </script>
 </body>
