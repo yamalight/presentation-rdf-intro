@@ -37,7 +37,7 @@
     Brush.prototype = new SyntaxHighlighter.Highlighter();
     Brush.aliases = ['turtle', 'n3'];
 
-    SyntaxHighlighter.brushes.JScript = Brush;
+    SyntaxHighlighter.brushes.Turtle = Brush;
 
     // CommonJS
     typeof(exports) != 'undefined' ? exports.Brush = Brush : null;

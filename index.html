@@ -391,7 +391,7 @@ RDF Data model
 
 <section class="slide" id="rdf-ex">
     <h2>Example of RDF graph</h2>
-    
+
     <img src="images/rdf-ex.png">
 </section>
 
@@ -408,16 +408,15 @@ RDF Data model
 <section class="slide" id="rdf-triples">
     <h2>Graph as a set of triples</h2>
 
-    <p>Different graph representations</p>
-    <p>Used: List of (node-edge-node)-triples</p>
+    <p>Graphs can be representated in different ways</p>
+    <p>
+        Commonly used: <br/>
+        List of <strong>(node-edge-node)</strong> triples
+    </p>
     <img src="images/rdf-ex-literals.png">
-</section>
 
-<section class="slide" id="rdf-triples-2">
-    <h2>Graph as a set of triples</h2>
-
-    <p>Literals can never be the starting point of edges in RDF graph</p>
-    <p>Edges of the RDF graph cannot be labeled with literals</p>
+    <p class="slide forceOpacity" id="rdf-triples-1">Literals can never be the starting point of edges in RDF graph</p>
+    <p class="slide" id="rdf-triples-2">Edges of the RDF graph cannot be labeled with literals</p>
 </section>
 
 <section class="slide" id="rdf-triple">
@@ -425,18 +424,18 @@ RDF Data model
 
     <p>Components of an RDF triple</p>
     <img src="images/rdf-triple.png">
-    <p>Modeled on linguistic categories, but not always consistent</p>
+    <!-- <p>Modeled on linguistic categories, but not always consistent</p> -->
     <p class="slide" id="rdf-triple-1.1">
         Allowed assignments:
     </p>
     <ul>
-        <li class="slide" id="rdf-triple-1.2">
+        <li class="slide forceOpacity" id="rdf-triple-1.2">
             <strong>Subject</strong>: URI or Blank node
         </li>
-        <li class="slide" id="rdf-triple-1.3">
+        <li class="slide forceOpacity" id="rdf-triple-1.3">
             <strong>Predicate</strong>: URI (also called Property)
         </li>
-        <li class="slide" id="rdf-triple-1.4">
+        <li class="slide forceOpacity" id="rdf-triple-1.4">
             <strong>Object</strong>: URI or Blank node or Literal
         </li>
     </ul>
@@ -454,10 +453,10 @@ RDF Syntax
         <li>Introduction and motivation</li>
         <li>URIs and IRIs</li>
         <li>RDF data model</li>
-        <li class="redText">RDF Syntax</li>
+        <li class="redText">RDF syntax</li>
         <li>Data types</li>
         <li>Blank nodes</li>
-        <li>RDF Containers</li>
+        <li>RDF containers</li>
     </ol>
 </section>
 
@@ -476,15 +475,15 @@ RDF Syntax
     <p>Turtle syntax:</p>
     <ul>
         <li>
-            URIs written in angle brackets, for example: &lt;http://dbpedia.org/resource/Leipzig&gt;
+            URIs written in angle brackets, for example: <strong>&lt;http://dbpedia.org/resource/Leipzig&gt;</strong>
         </li>
-        <li>
-            Literals written in quotes, for example: "Leipzig"@de and "51.333332"^^xsd:float
+        <li class="slide forceOpacity" id="rdf-syntax-turtle-1">
+            Literals written in quotes, for example: <strong>"Leipzig"@de</strong> and <strong>"51.333332"^^xsd:float</strong>
         </li>
-        <li>
+        <li class="slide forceOpacity" id="rdf-syntax-turtle-2">
             Triples are completed by dot
         </li>
-        <li>
+        <li class="slide" id="rdf-syntax-turtle-3">
             Spaces and line breaks within identifiers are ignored
         </li>
     </ul>
@@ -494,53 +493,55 @@ RDF Syntax
     <h2>Turtle Syntax: Abbreviations</h2>
     <p>
         Example:
-        <textarea class="code" mode="xml" style="display: none;">
-&lt;http://dbpedia.org/resource/Leipzig&gt;  &lt;http://dbpedia.org/property/hasMayor&gt;   &lt;http://dbpedia.org/resource/Burkhard_Jung &gt; .
-&lt;http://dbpedia.org/resource/Leipzig&gt;     &lt;http://www.w3.org/2000/01/rdf-schema#label&gt;      "Leipzig"@de .
-&lt;http://dbpedia.org/resource/Leipzig&gt;     &lt;http://www.w3.org/2003/01/geo/wgs84_pos#lat&gt;    
-"51.333332"^^ &lt;http://www.w3.org/2001/XMLSchema#float&gt; .
-&lt;http://dbpedia.org/resource/Leipzig&gt;     &lt;http://www.w3.org/2003/01/geo/wgs84_pos#lon&gt;  
-"12.383333"^^ &lt;http://www.w3.org/2001/XMLSchema#float&gt; .</textarea>
+        <pre class="brush: turtle">
+&lt;http://dbpedia.org/resource/Leipzig&gt;  &lt;http://dbpedia.org/property/hasMayor&gt;          &lt;http://dbpedia.org/resource/Burkhard_Jung&gt; .
+&lt;http://dbpedia.org/resource/Leipzig&gt;  &lt;http://www.w3.org/2000/01/rdf-schema#label&gt;    "Leipzig"@de .
+&lt;http://dbpedia.org/resource/Leipzig&gt;  &lt;http://www.w3.org/2003/01/geo/wgs84_pos#lat&gt;   "51.333332"^^&lt;http://www.w3.org/2001/XMLSchema#float&gt; .
+&lt;http://dbpedia.org/resource/Leipzig&gt;  &lt;http://www.w3.org/2003/01/geo/wgs84_pos#lon&gt;   "12.383333"^^&lt;http://www.w3.org/2001/XMLSchema#float&gt; .
+        </pre>
     </p>
     <p>
         Turtle prefixes can be defined:
-        <textarea class="code" mode="xml" style="display: none;">
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix dbr:  <http://dbpedia.org/resource/> .
-@prefix dbp:  <http://dbpedia.org/property/> .
-@prefix geo:  <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+        <pre class="brush: turtle">
+@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix dbr:  &lt;http://dbpedia.org/resource/&gt; .
+@prefix dbp:  &lt;http://dbpedia.org/property/&gt; .
+@prefix geo:  &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
 
 dbr:Leipzig   dbp:hasMayor   dbr:Burkhard_Jung .
 dbr:Leipzig   rdfs:label     "Leipzig"@de .
 dbr:Leipzig   geo:lat        "51.333332"^^xsd:float .
-dbr:Leipzig   geo:long       "12.383333"^^xsd:float .</textarea>
+dbr:Leipzig   geo:long       "12.383333"^^xsd:float .
+        </pre>
     </p>
 </section>
 
 <section class="slide" id="rdf-syntax-turtle-abbreviations-2">
     <h2>Turtle Syntax: Abbreviations</h2>
     <p>
-        Triples with the same subject can be combined:
-        <textarea class="code" mode="xml" style="display: none;">
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        Triples with the same Subject can be combined:
+        <pre class="brush: turtle">
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 …
-@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
 
 dbr:Leipzig   dbp:hasMayor    dbr:Burkhard_Jung ;
               rdfs:label      "Leipzig"@de ;
               geo:lat         "51.333332"^^xsd:float ;
-              geo:long        "12.383333"^^xsd:float .</textarea>
+              geo:long        "12.383333"^^xsd:float .
+        </pre>
     </p>
     <p>
-        As can be triples with the same subject and predicate:
-        <textarea class="code" mode="xml" style="display: none;">
-@prefix dbr: <http://dbpedia.org/resource/> .
-@prefix dbp: <http://dbpedia.org/property/> .
+        As can be triples with the same Subject and Predicate:
+        <pre class="brush: turtle">
+@prefix dbr: &lt;http://dbpedia.org/resource/&gt; .
+@prefix dbp: &lt;http://dbpedia.org/property/&gt; .
 
-dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany;
-               dbp:hasMayor      dbr:Burkhard_Jung .</textarea>
+dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany ;
+               dbp:hasMayor      dbr:Burkhard_Jung .
+        </pre>
     </p>
 </section>
 
@@ -553,10 +554,10 @@ dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany;
     <p>
         But there's better tool support and more programming libraries for XML
     </p>
-    <p>
-        Therefore: RDF/XML syntax has spread
+    <p class="slide" id="rdf-syntax-xml-1.1">
+        RDF/XML syntax has spread
     </p>
-    <p>
+    <p class="slide" id="rdf-syntax-xml-1.2">
         Standard practice: if RDF data is published, RDF/XML is provided as one of serializations
     </p>
 </section>
@@ -569,44 +570,46 @@ dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany;
     <p>
         RDF own tags have a default namespace identifier 'rdf'
     </p>
-    <textarea class="code" mode="xml" style="display: none;">
-<?xml version="1.0"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    <pre class="brush: xml">
+&lt;?xml version="1.0"?&gt;
+&lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:xsd= "http://www.w3.org/2001/XMLSchema#"
          xmlns:dbp="http://dbpedia.org/property/"
-         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
-    <rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig">
-        <dbp:hasMayor rdf:resource="http://dbpedia.org/resource/Burkhard_Jung" />
-        <rdfs:label xml:lang="de">Leipzig</rdfs:label>
-        <geo:lat rdf:datatype="float">51.3333</geo:lat>
-        <geo:long rdf:datatype="float">12.3833</geo:long>
-    </rdf:Description>
-</rdf:RDF></textarea>
+         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"&gt;
+    &lt;rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig"&gt;
+        &lt;dbp:hasMayor rdf:resource="http://dbpedia.org/resource/Burkhard_Jung" /&gt;
+        &lt;rdfs:label xml:lang="de"&gt;Leipzig&lt;/rdfs:label&gt;
+        &lt;geo:lat rdf:datatype="float"&gt;51.3333&lt;/geo:lat&gt;
+        &lt;geo:long rdf:datatype="float"&gt;12.3833&lt;/geo:long&gt;
+    &lt;/rdf:Description&gt;
+&lt;/rdf:RDF&gt;
+    </pre>
 </section>
 
 <section class="slide" id="rdf-syntax-xml-3">
     <h2>XML Syntax for RDF</h2>
     <p>
-        <i>rdf:Description</i> element includes subject (URI as the value of the corresponding <i>rdf:about</i> attribute)
+        <strong>rdf:Description</strong> element includes subject (URI as the value of the corresponding <strong>rdf:about</strong> attribute)
     </p>
     <p>
-        Each of the elements contained in <i>rdf:Description</i> is a predicate, which in turn contains the Object of the triple (via <i>rdf:resource</i> attribute)
+        Each of the elements contained in <strong>rdf:Description</strong> is a predicate, which in turn contains the Object of the triple (via <strong>rdf:resource</strong> attribute)
     </p>
-    <textarea class="code" mode="xml" style="display: none;">
-<?xml version="1.0"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    <pre class="brush: xml">
+&lt;?xml version="1.0"?&gt;
+&lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:xsd= "http://www.w3.org/2001/XMLSchema#"
          xmlns:dbp="http://dbpedia.org/property/"
-         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
-    <rdf:Description <strong>rdf:about="http://dbpedia.org/resource/Leipzig"></strong>
-        <dbp:hasMayor rdf:resource="http://dbpedia.org/resource/Burkhard_Jung" />
-        <rdfs:label xml:lang="de">Leipzig</rdfs:label>
-        <geo:lat rdf:datatype="float">51.3333</geo:lat>
-        <geo:long rdf:datatype="float">12.3833</geo:long>
-    </rdf:Description>
-</rdf:RDF></textarea>
+         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"&gt;
+    &lt;rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig"&gt;
+        &lt;dbp:hasMayor rdf:resource="http://dbpedia.org/resource/Burkhard_Jung" /&gt;
+        &lt;rdfs:label xml:lang="de"&gt;Leipzig&lt;/rdfs:label&gt;
+        &lt;geo:lat rdf:datatype="float"&gt;51.3333&lt;/geo:lat&gt;
+        &lt;geo:long rdf:datatype="float"&gt;12.3833&lt;/geo:long&gt;
+    &lt;/rdf:Description&gt;
+&lt;/rdf:RDF&gt;
+    </pre>
 </section>
 
 <section class="slide" id="rdf-syntax-xml-4">
@@ -618,25 +621,26 @@ dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany;
         Allowed condensed version:
         <ul>
             <li>
-                A Subject includes several of Property elements
+                A Subject includes several Property elements
             </li>
             <li>
                 An Object description serves as the Subject for another triple
             </li>
         </ul>
     </p>
-    <textarea class="code" mode="xml" style="display: none;">
-<?xml version="1.0"?>
-<rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig">
-  <dbr:name>Leipzig</dbr:name>
-  <dbp:hasMayor>
-    <rdf:Description rdf:about=„http://dbpedia.org/resource/Burkhard_Jung“>
-      <dbp:name>Burkhard Jung</dbp:name>
-    </rdf:Description>
-  </dbp:hasMayor>
-  <geo:lat rdf:datatype="float">51.3333</geo:lat>
-  <geo:long rdf:datatype="float">12.3833</geo:long>
-</rdf:Description></textarea>
+    <pre class="brush: xml">
+&lt;?xml version="1.0"?&gt;
+&lt;rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig"&gt;
+  &lt;dbr:name&gt;Leipzig&lt;/dbr:name&gt;
+  &lt;dbp:hasMayor&gt;
+    &lt;rdf:Description rdf:about=„http://dbpedia.org/resource/Burkhard_Jung“&gt;
+      &lt;dbp:name&gt;Burkhard Jung&lt;/dbp:name&gt;
+    &lt;/rdf:Description&gt;
+  &lt;/dbp:hasMayor&gt;
+  &lt;geo:lat rdf:datatype="float"&gt;51.3333&lt;/geo:lat&gt;
+  &lt;geo:long rdf:datatype="float"&gt;12.3833&lt;/geo:long&gt;
+&lt;/rdf:Description&gt;
+    </pre>
 </section>
 
 <section class="slide" id="rdf-syntax-xml-5">
@@ -650,17 +654,17 @@ dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany;
     <p>
         Object URIs can be specified as the value of the rdf:resource attributes within a property tags
     </p>
-    <textarea class="code" mode="xml" style="display: none;">
+    <pre class="brush: xml">
 <?xml version="1.0"?>
-<rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig" 
-                 dbp:name="Leipzig">
-            <geo:lat rdf:datatype="float">51.3333</geo:lat>
-            <geo:long rdf:datatype="float">12.3833</geo:long>           
-</rdf:Description>
-<rdfDescription rdf:about="http://dbpedia.org/resource/Burkhard_Jung"
-                rdf:hasMayor
-                dbp:name="Burkhard Jung">
-</rdf:Description></textarea>
+&lt;rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig" 
+                 dbp:name="Leipzig"&gt;
+            &lt;geo:lat rdf:datatype="float"&gt;51.3333&lt;/geo:lat&gt;
+            &lt;geo:long rdf:datatype="float"&gt;12.3833&lt;/geo:long&gt;           
+&lt;/rdf:Description&gt;
+&lt;rdfDescription rdf:about="http://dbpedia.org/resource/Burkhard_Jung"
+                dbp:name="Burkhard Jung"&gt;
+&lt;/rdf:Description&gt;
+    </pre>
 </section>
 
 <section class="slide" id="rdf-syntax-xml-6">
@@ -670,19 +674,18 @@ dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany;
     </p>
     <p>
         <b>Problem</b>:<br/> 
-        it's not possible to us any XML namespaces possible in attribute values ​​(would the sense of a URI scheme interpreted):
-        <textarea class="code" mode="xml" style="display: none;">
+        it's not possible to us any XML namespaces possible in attribute values:
+        <pre class="brush: xml">
             rdf:about="dbr:Leipzig"
-        </textarea>
+        </pre>
     </p>
     <p>
         "Workaround" via XML entities:
-        <textarea class="code" mode="xml" style="display: none;">
-            <!ENTITY dbr 'http://dbpedia.org/resource/'>
-        </textarea>
-        <textarea class="code" mode="xml" style="display: none;">
+        <pre class="brush: xml">
+            &lt;!ENTITY dbr 'http://dbpedia.org/resource/'&gt;
+            ...
             rdf:resource="&dbr;Leipzig"
-        </textarea>
+        </pre>
     </p>
 </section>
 
@@ -690,17 +693,15 @@ dbr:Leipzig    dbp:locatedIn     dbr:Saxony, dbr:Germany;
     <h2>RDF/XML Syntax: Base URLs</h2>
     <p>
         Working with base URIs:
-        <textarea class="code" mode="xml" style="display: none;">
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xml:base="http://dbpedia.org/resource/" >
+        <pre class="brush: xml">
+&lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xml:base="http://dbpedia.org/resource/" &gt;
          
-    <rdf:Description rdf:about="Leipzig">
-        <property:hasMayor rdf:resource="Burkhard_Jung" />
-    </rdf:Description
-</rdf:RDF></textarea>
-    </p>
-    <p>
-        Detection of relative URIs in the absence of a scheme member
+    &lt;rdf:Description rdf:about="Leipzig"&gt;
+        &lt;property:hasMayor rdf:resource="Burkhard_Jung" /&gt;
+    &lt;/rdf:Description
+&lt;/rdf:RDF&gt;
+        </pre>
     </p>
 </section>
 
@@ -710,19 +711,19 @@ RDF / JSON
 <section class="slide" id="rdf-syntax-json-1">
     <h2>RDF/JSON</h2>
     <p>
-        JSON = JavaScript Object Notation
+        JSON = <strong>JavaScript Object Notation</strong>
     </p>
     <p>
         Compact format for data exchange between applications
     </p>
     <p>
-        Valid JSON_Dokument is valid JavaScript and can be interpreted by eval()
+        Valid JSON-Document is valid JavaScript
     </p>
     <p>
         Programming language independent (a lot of parsers for most languages)
     </p>
     <p>
-        Produces less overhead than XML (for parsing and serializing)
+        Produces less overhead than XML
     </p>
 </section>
 
@@ -730,74 +731,84 @@ RDF / JSON
     <h2>RDF/JSON</h2>
     <p>
         An RDF/JSON object is formed from subject S, predicate P and object O:
-        <textarea class="code" mode="json" style="display: none;">
+        <pre class="brush: javascript">
             {"S": {"P": [O] } }
-        </textarea>
+        </pre>
     </p>
     <p>
-        Object is in the form:
+        The Object is represented as a JSON object with the following keys:
         <ul>
-            <li>Must be "URI", "literal" or "bnode" type. Must be specified and must be lowercase</li>
-            <li>Value: describes the data value of an object. You must specify the best the entire URI</li>
-            <li>Long: Specifies the literal language. Is optional, but if it has been specified, it can not be empty</li>
-            <li>Data Type: Specifies the URI of the data type of the literal. Is also an option.</li>
+            <li><h3>Type:</h3>
+                <p>Must be one of "uri", "literal" or "bnode". Must be specified and must be lowercase.</p>
+            </li>
+            <li>
+                <h3>Value:</h3> 
+                <p>Describes the lexical value of the object. Full URIs must be used.</p>
+            </li>
+            <li>
+                <h3>Lang:</h3> 
+                <p>Specifies the language of a literal value. Optional, but if supplied it must not be empty.</p>
+            </li>
+            <li>
+                <h3>Data Type:</h3>
+                <p>Specifies the datatype URI of the literal value. Also optional.</p>
+            </li>
         </ul>
     </p>
 </section>
 
 <section class="slide" id="rdf-syntax-json-3">
     <h2>Example of RDF/JSON Document</h2>
-    <textarea class="code" mode="javascript" style="display: none;">
-{
-  "http://dbpedia.org/resource/Leipzig" : {
-       "http://dbpedia.org/property/hasMayor": 
-              [ { "type":"uri", "value":"http://dbpedia.org/resource/Burkhard_Jung" } ],
-       "http://www.w3.org/2000/01/rdf-schema#label":
-              [ { "type":"literal", "value":"Leipzig", "lang":"en" } ] ,
-       "http://www.w3.org/2003/01/geo/wgs84_pos#lat":
-              [ { "type":"literal", "value":"51.3333",
-                    "datatype":"http://www.w3.org/2001/XMLSchema#float" } ]
-      "http://www.w3.org/2003/01/geo/wgs84_pos#lon":
-              [ { "type":"literal", "value":"12.3833",
-                        "datatype":"http://www.w3.org/2001/XMLSchema#float" } ]
+    <pre class="brush: js">
+{"http://dbpedia.org/resource/Leipzig" : {
+    "http://dbpedia.org/property/hasMayor": 
+        [{ "type":"uri", "value":"http://dbpedia.org/resource/Burkhard_Jung" }],
+    "http://www.w3.org/2000/01/rdf-schema#label":
+        [{ "type":"literal", "value":"Leipzig", "lang":"en" }],
+    "http://www.w3.org/2003/01/geo/wgs84_pos#lat":
+        [{ "type":"literal", "value":"51.3333",
+           "datatype":"http://www.w3.org/2001/XMLSchema#float" }]
+    "http://www.w3.org/2003/01/geo/wgs84_pos#lon":
+        [{ "type":"literal", "value":"12.3833",
+           "datatype":"http://www.w3.org/2001/XMLSchema#float" }]
     }
 }
-    </textarea>
+    </pre>
 </section>
 
 <section class="slide" id="rdf-syntax-rdfa-1">
     <h2>RDFa</h2>
-    <p>RDFa = RDF in attributes</p>
+    <p>RDFa = <strong>RDF in attributes</strong></p>
     <p>Was developed to embed RDF into XHTML</p>
-    <p>UTF-8 and UTF-16 were used for coding, as extension of XML-based XHTML</p>
-    <p>IRIs can be used</p>
+    <p>As an extension of XML-based XHTML uses UTF-8 and UTF-16<br/></p>
+    <p>Supports IRIs</p>
     <p>Since RDFa is embedded in XHTML, it creates a greater overhead than other serializations</p>
     <p>The readability is reduced in comparison to Turtle</p>
 </section>
 
 <section class="slide" id="rdf-syntax-rdfa-2">
     <h2>Example of RDFa</h2>
-    <textarea class="code" mode="text/html" style="display: none;">
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-    "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html version="XHTML+RDFa 1.0" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    <pre class="brush: xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"&gt;
+&lt;html version="XHTML+RDFa 1.0" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
       xmlns:xsd=" http://www.w3.org/2001/XMLSchema# "
       xmlns:dbp="http://dbpedia.org/property/"
-         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
-  <head><title>Leipzig</title></head>
-  <body about="http://dbpedia.org/resource/Leipzig">
-    <h1 property="rdfs:label" xml:lang="de">Leipzig</h1>
-    <p>Leipzig is a city in Germany. Leipzig's mayor is 
-       <a href="Burkhard_Jung" rel="dbp:hasMayor">Burkhard Jung</a>. It is located
-         at latitude <span property="geo:lat" datatype="xsd:float">51.3333</span>
-       and longitude <span property="geo:long" datatype="xsd:float">12.3833</span>.
-   </p>
-  </body>
-</html>
-    </textarea>
+         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"&gt;
+  &lt;head&gt;&lt;title&gt;Leipzig&lt;/title&gt;&lt;/head&gt;
+  &lt;body about="http://dbpedia.org/resource/Leipzig"&gt;
+    &lt;h1 property="rdfs:label" xml:lang="de"&gt;Leipzig&lt;/h1&gt;
+    &lt;p&gt;Leipzig is a city in Germany. Leipzig's mayor is 
+       &lt;a href="Burkhard_Jung" rel="dbp:hasMayor"&gt;Burkhard Jung&lt;/a&gt;. It is located
+         at latitude &lt;span property="geo:lat" datatype="xsd:float"&gt;51.3333&lt;/span&gt;
+       and longitude &lt;span property="geo:long" datatype="xsd:float"&gt;12.3833&lt;/span&gt;.
+   &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </pre>
 </section>
 
 
@@ -810,101 +821,101 @@ Data types
         <li>Introduction and motivation</li>
         <li>URIs and IRIs</li>
         <li>RDF data model</li>
-        <li>RDF Syntax</li>
+        <li>RDF syntax</li>
         <li class="redText">Data types</li>
         <li>Blank nodes</li>
-        <li>RDF Containers</li>
+        <li>RDF containers</li>
     </ol>
 </section>
 
 <section class="slide" id="rdf-datatypes-1">
     <h2>Data Types</h2>
     <p>
-        Example: <i>xsd:decimal</i>
+        One pre-defined datatype: <strong>rdf:XMLLiteral</strong>
+        <ul><li>Used for embedding XML in RDF</li></ul>
     </p>
+    <p>Recommended datatypes are XML Schema datatypes, e.g.:
+        <ul>
+            <li>xsd:string</li>
+            <li>xsd:integer</li>
+            <li>xsd:float</li>
+            <li>xsd:anyURI</li>
+            <li>xsd:boolean</li>
+        </ul>
+    </p>
+</section>
+
+<section class="slide" id="rdf-datatypes-1.1">
+    <h2>Data Types: Example</h2>
+    <p><strong>xsd:decimal</strong></p>
     <img src="images/datatype-abstract.png">
 </section>
 
 <section class="slide" id="rdf-datatypes-2">
     <h2>Data Types in RDF</h2>
-    <p>
-        Previously: untyped literals are treated as strings (e.g.: "02" < "100" < "11" < "2")
-    </p>
+    <p>Previously: untyped literals are treated as strings (e.g.: "02" < "100" < "11" < "2")</p>
     <p>Typing allows better (semantic) approach to values</p>
     <p>Data types are identified by URIs, and are in principle arbitrary</p>
-    <p>Common: the use of XML Schema data types (XSD)</p>
-    <p>Syntax: "Data value"^^datatype-URI</p>
+    <p>Syntax: <strong>"Data value"^^datatype-URI</strong></p>
 </section>
 
 <section class="slide" id="rdf-datatypes-3">
     <h2>Data Types in RDF: Example</h2>
     <img src="images/datatype-ex.png" style="max-height: 200px;">
-    <textarea class="code" mode="xml" style="display: none;">
-@prefix dbr: <http://dbpedia.org/resource/> .
-@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
+    <p>In Turtle:</p>
+    <pre class="brush: xml">
+@prefix dbr: &lt;http://dbpedia.org/resource/&gt; .
+@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; . 
 
-dbr:Leipzig     geo:lat     "51.333332"^^xsd:float ,
+dbr:Leipzig     geo:lat     "51.333332"^^xsd:float ;
                 geo:long    "12.383333"^^xsd:float .
-</textarea>
+    </pre>
 
-<textarea class="code" mode="xml" style="display: none;">
-<?xml version="1.0"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    <p>In RDF/XML:</p>
+    <pre class="brush: xml">
+&lt;?xml version="1.0"?&gt;
+&lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
-<rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig">
-    <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#float">51.3333</geo:lat>
-    <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#float">12.3833</geo:long>
-</rdf:Description>
-</textarea>
+         xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"&gt;
+&lt;rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig"&gt;
+    &lt;geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#float"&gt;51.3333&lt;/geo:lat&gt;
+    &lt;geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#float"&gt;12.3833&lt;/geo:long&gt;
+&lt;/rdf:Description&gt;
+    </pre>
 </section>
 
 <section class="slide" id="rdf-datatypes-4">
-    <h2>Predefined Data Types</h2>
-    <p>rdf:XML literal is the only pre-defined data type in RDF called arbitrary (balanced) XML fragments</p>
-    <p>in RDF/XML syntax for uniquely special presentation:</p>
-    <textarea class="code" mode="xml" style="display: none;">
-<rdf:Description rdf:about="http://example.org/SemanticWeb">
-    <ex:Titel rdf:parseType="Literal">
-        <b>Semantic Web</b>
-        <br />
-        Grundlagen
-    </ex:Titel>
-</rdf:Description>
-    </textarea>
+    <h2>Linguistic information and data types</h2>
+    <p>Language information affect only untyped literals</p>
+    <p>Example:</p>
+    <pre class="brush: xml">
+&lt;rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig"&gt;
+        &lt;rdfs:label xml:lang="de"&gt;Leipzig&lt;/rdfs:label&gt;
+        &lt;rdfs:label xml:lang="ru"&gt;Лейпциг&lt;/rdfs:label&gt;
+&lt;/rdf:Description&gt;
+    </pre>
+    <p>Turtle:</p>
+    <pre class="brush: n3">
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+
+http://dbpedia.org/resource/Leipzig     rdfs:label     "Leipzig"@de ;
+                                        rdfs:label     "Лейпциг"@ru .
+    </pre>
 </section>
 
 <section class="slide" id="rdf-datatypes-5">
     <h2>Linguistic information and data types</h2>
-    <p>Language information affect only untyped literals</p>
-    <p>Example:</p>
-    <textarea class="code" mode="xml" style="display: none;">
-<rdf:Description rdf:about="http://dbpedia.org/resource/Leipzig">
-        <rdfs:label xml:lang="de">Leipzig</rdfs:label>
-        <rdfs:label xml:lang="ru">Лейпциг</rdfs:label>
-</rdf:Description>
-    </textarea>
-    <textarea class="code" mode="xml" style="display: none;">
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    <p>By RDF specification the following literals are different but often implemented as equal.</p>
+    <pre class="brush: n3">
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; . 
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix dbr: &lt;http://dbpedia.org/resource/&gt; .
 
-http://dbpedia.org/resource/Leipzig     rdfs:label     "Leipzig"@de ,
-                                        rdfs:label     "Лейпциг"@ru
-    </textarea>
-</section>
-
-<section class="slide" id="rdf-datatypes-6">
-    <h2>Linguistic information and data types</h2>
-    <p>by RDF specification accordingly, the following literals are different but often (according to intuition) as equally implemented.</p>
-    <textarea class="code" mode="xml" style="display: none;">
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix dbr: <http://dbpedia.org/resource/> .
-
-dbr:Leipzig     rdfs:label      "Leipzig" ,
-                                "Leipzig"@de ,
+dbr:Leipzig     rdfs:label      "Leipzig" ;
+                                "Leipzig"@de ;
                                 "Leipzig"^^xsd:string .
-    </textarea>
+    </pre>
 </section>
 
 <!-- 
@@ -916,61 +927,61 @@ Blank Nodes
         <li>Introduction and motivation</li>
         <li>URIs and IRIs</li>
         <li>RDF data model</li>
-        <li>RDF Syntax</li>
+        <li>RDF syntax</li>
         <li>Data types</li>
         <li class="redText">Blank nodes</li>
-        <li>RDF Containers</li>
+        <li>RDF containers</li>
     </ol>
 </section>
 
 <section class="slide" id="rdf-bnodes-1">
     <h2>Blank Nodes</h2>
-    <p>Blank nodes (bnodes) can be used for resources that are not named (e.g. auxiliary node)</p>
-    <p>Can be read as an existential statements</p>
+    <p>Blank nodes (bnodes) represent a resource for which URI or literal is not given.</p>
+    <p>The resource represented by a blank node is also called an anonymous resource.</p>
     <img src="images/bnode-ex.png">
 </section>
 
 <section class="slide" id="rdf-bnodes-2">
     <h2>Blank Nodes</h2>
     <p>Syntax:</p>
-    <textarea class="code" mode="xml" style="display: none;">
-@prefix ex: <http://example.org/> .
+    <pre class="brush: n3">
+@prefix ex: &lt;http://example.org/&gt; .
 
 ex:Chutney      ex:hasIngridient;      _:id1 .
-_:id1           ex:Ingridient          ex:greenMango;  
+_:id1           ex:Ingridient          ex:greenMango ;  
                 ex:amount              "450g" .
-    </textarea>
+    </pre>
     <p>Shortened with brackets:</p>
-    <textarea class="code" mode="xml" style="display: none;">
-@prefix ex: <http://example.org/> .
+    <pre class="brush: n3">
+@prefix ex: &lt;http://example.org/&gt; .
 
 ex:Chutney      ex:hasIngridient
-              [ ex:Ingridient          ex:greenMango;  
+              [ ex:Ingridient          ex:greenMango ;  
                 ex:amount              "450g" ] .
-    </textarea>
+    </pre>
 </section>
 
 <section class="slide" id="rdf-bnodes-3">
     <h2>Blank Nodes</h2>
     <p>Syntax:</p>
-    <textarea class="code" mode="xml" style="display: none;">
-<rdf:Description rdf:about="http://example.org/Chutney">
-      <ex:hasIngridient rdf:nodeID="id1" />
-</rdf:Description>
-<rdf:Description rdf:nodeID="id1">
-      <ex:Ingridient rdf:resource="http://example.org/greenMango" />
-      <ex:amount>450g</ex:amount>
-</rdf:description>
-    </textarea>
+    <pre class="brush: xml">
+&lt;rdf:Description rdf:about="http://example.org/Chutney"&gt;
+      &lt;ex:hasIngridient rdf:nodeID="id1" /&gt;
+&lt;/rdf:Description&gt;
+&lt;rdf:Description rdf:nodeID="id1"&gt;
+      &lt;ex:Ingridient rdf:resource="http://example.org/greenMango" /&gt;
+      &lt;ex:amount&gt;450g&lt;/ex:amount&gt;
+&lt;/rdf:description&gt;
+    </pre>
     <p>Shortened:</p>
-    <textarea class="code" mode="xml" style="display: none;">
-<rdf:Description rdf:about="http://example.org/Chutney">
-      <ex:hasIngridient rdf:parseType="Resource">
-         <ex:Ingridient rdf:resource="http://example.org/greenMango" />
-         <ex:amount>450g</ex:amount>
-      </ex:hasIngridient>
-</rdf:description>
-    </textarea>
+    <pre class="brush: xml">
+&lt;rdf:Description rdf:about="http://example.org/Chutney"&gt;
+      &lt;ex:hasIngridient rdf:parseType="Resource"&gt;
+         &lt;ex:Ingridient rdf:resource="http://example.org/greenMango" /&gt;
+         &lt;ex:amount&gt;450g&lt;/ex:amount&gt;
+      &lt;/ex:hasIngridient&gt;
+&lt;/rdf:description&gt;
+    </pre>
 </section>
 
 
@@ -983,24 +994,30 @@ RDF Containers
         <li>Introduction and motivation</li>
         <li>URIs and IRIs</li>
         <li>RDF data model</li>
-        <li>RDF Syntax</li>
+        <li>RDF syntax</li>
         <li>Data types</li>
         <li>Blank nodes</li>
-        <li class="redText">RDF Containers</li>
+        <li class="redText">RDF containers</li>
     </ol>
 </section>
 
 <section class="slide" id="rdf-containers-1">
     <h2>RDF Containers</h2>
-    <p>Common data structures to enumerate as many resources (order irrelevant), eg Authors of a book</p>
+    <p>Common data structures to enumerate several resources, e.g. authors of the book.</p>
     <p>
         Distinction between:
         <ul>
-            <li>open lists (containers)? adding new entries possible</li>
-            <li>closed lists (collections) Adding new entries is not possible</li>
+            <li>
+                <strong>Open lists</strong> (containers) <br/>
+                Adding new entries is possible
+            </li>
+            <li>
+                <strong>Closed lists</strong> (collections) <br/>
+                Adding new entries is not possible
+            </li>
         </ul>
     </p>
-    <p>Can be modeled with previously presented of expression, so no additional expressiveness!</p>
+    <p>Can be modeled using existing means</p>
 </section>
 
 <section class="slide" id="rdf-containers-2">
@@ -1011,58 +1028,46 @@ RDF Containers
 <section class="slide" id="rdf-containers-3">
     <h2>RDF Containers: Types</h2>
     <p>
-        via rdf:type lists the root node is a list type assigned:
+        List type is defined using <strong>rdf:type</strong>.
         <ul>
-            <li>rdf:Seq interpretation as an ordered list (sequence)?</li>
-            <li>rdf:Bag interpretation as an unordered set in RDF encoded sequence is irrelevant?</li>
-            <li>rdf:Alt amount of alternative options usually only one entry in the list relevant</li>
+            <li>
+                <h3>rdf:Seq</h3> 
+                <p>Ordered list (sequence)</p>
+            </li>
+            <li>
+                <h3>rdf:Bag</h3>
+                <p>Unordered set</p>
+            </li>
+            <li>
+                <h3>rdf:Alt</h3>
+                <p>Set of alternative options</p>
+            </li>
         </ul>
     </p>
 </section>
 
 <section class="slide" id="rdf-containers-4">
     <h2>Closed lists</h2>
-    <p>Idea: recursive decomposition of the list in the head element and (possibly empty) list of remaining</p>
     <img src="images/list-closed.png">
 </section>
 
 <section class="slide" id="rdf-containers-5">
     <h2>Closed lists</h2>
-    <textarea class="code" mode="xml" style="display: none;">
-@prefix ex: <http://example.org/> .
+    <pre class="brush: n3">
+@prefix ex: &lt;http://example.org/&gt; .
 ex:SemanticWeb  ex:Autor        
-                (ex:Hitzler  ex:Krötzsch    ex:Rudolph   ex:Sure) .
-    </textarea>
-    <textarea class="code" mode="xml" style="display: none;">
-<rdf:Description rdf:about="http://example.org/SemanticWeb">
-    <ex:Autoren rdf:parseType="Collecton">>
-        <rdf:li rdf:resource="http://www.example.org/Hitzler" />
-        <rdf:li rdf:resource="http://www.example.org/Krötzsch" />
-        <rdf:li rdf:resource="http://www.example.org/Rudolph" />
-        <rdf:li rdf:resource="http://www.example.org/Sure" />
-    </ex:Autoren>
-</rdf:Description>
-    </textarea>
-</section>
-
-
-<section class="slide" id="rdf-containers-6">
-    <h2>Closed lists</h2>
-    <textarea class="code" mode="xml" style="display: none;">
-@prefix ex: <http://example.org/> .
-ex:SemanticWeb  ex:Autor        
-                (ex:Hitzler  ex:Krötzsch    ex:Rudolph   ex:Sure) .
-    </textarea>
-    <textarea class="code" mode="xml" style="display: none;">
-<rdf:Description rdf:about="http://example.org/SemanticWeb">
-    <ex:Autoren rdf:parseType="Collecton">>
-        <rdf:li rdf:resource="http://www.example.org/Hitzler" />
-        <rdf:li rdf:resource="http://www.example.org/Krötzsch" />
-        <rdf:li rdf:resource="http://www.example.org/Rudolph" />
-        <rdf:li rdf:resource="http://www.example.org/Sure" />
-    </ex:Autoren>
-</rdf:Description>
-    </textarea>
+              ( ex:Hitzler  ex:Krötzsch  ex:Rudolph  ex:Sure ) .
+    </pre>
+    <pre class="brush: xml">
+&lt;rdf:Description rdf:about="http://example.org/SemanticWeb"&gt;
+    &lt;ex:Autoren rdf:parseType="Collecton"&gt;&gt;
+        &lt;rdf:li rdf:resource="http://www.example.org/Hitzler" /&gt;
+        &lt;rdf:li rdf:resource="http://www.example.org/Krötzsch" /&gt;
+        &lt;rdf:li rdf:resource="http://www.example.org/Rudolph" /&gt;
+        &lt;rdf:li rdf:resource="http://www.example.org/Sure" /&gt;
+    &lt;/ex:Autoren&gt;
+&lt;/rdf:Description&gt;
+    </pre>
 </section>
 
 
@@ -1086,19 +1091,19 @@ RDF Schema
 <section class="slide" id="rdfs-1">
     <h2>RDF</h2>
     <p>RDF provides universal way to encode data on the Web:</p>
-    <textarea class="code" mode="xml" style="display: none;">
-<http://example.org/SemanticWeb> <http://example.org/publishedBy> <http://www.springer.com/Publisher> .
-    </textarea>
-    <p>Statements about individual resources (individuals) and their relationships</p>
+    <pre class="brush: n3">
+&lt;http://example.org/SemanticWeb&gt; &lt;http://example.org/publishedBy&gt; &lt;http://www.springer.com/Publisher&gt; .
+    </pre>
+    <p>Statements about individual resources and their relationships</p>
 </section>
 
 <section class="slide" id="rdfs-2">
     <h2>RDF</h2>
     <p>
-        Allows the description of facts, but:
+        Allows description of facts, but:
         <ul>
-            <li>No typeing</li>
-            <li>No description of the characteristics and properties of classes</li>
+            <li>No typing</li>
+            <li>No description of classes' characteristics and properties </li>
         </ul>
     </p>
     <p>
@@ -1115,38 +1120,44 @@ RDF Schema
 </section>
 
 <section class="slide" id="rdfs-3">
-    <h2>Schemawissen mit RDFS</h2>
-    <p>Aussagen über generische Mengen von Individuen (Klassen), z.B. Verlage, Personen, Organisationen, etc.</p>
-    <p>Spezifikation der logischen Zusammenhänge zwischen Individuen, Klassen und Beziehungen     "Verlage sind Organisationen.""Nur Personen schreiben Bücher."</p>
-    <p>in Datenbanksprache: Schemawissen</p>
+    <h2>Schema Knowledge with RDFS</h2>
+    <p>
+        Statements about classes.<br/>
+        e.g. publishers, individuals, organizations, etc.
+    </p>
+    <p>
+        Specification of the logical relationships between instances, classes and relationships<br/> 
+        "Publishers are organizations."<br/>
+        "Only people write books."
+    </p>
+    <p>In database terminology: Schema Knowledge</p>
 </section>
 
 <section class="slide" id="rdfs-4">
-    <h2>Schema knowledge with RDFS</h2>
-    <p>RDF Schema (RDFS): part of the W3C recommendation for RDF </p>
-    <p>Allows specification of schematic (also: terminological) knowledge </p>
-    <p>Special RDF-vocabulary (ie: every RDFS document is an RDF document) </p>
-    <p>Namespace (usually abbreviated as "rdfs:") : http://www.w3.org/2000/01/rdf-schema# </p>
+    <h2>Schema Knowledge with RDFS</h2>
+    <p><strong>RDF Schema (RDFS)</strong>: part of the W3C recommendations for RDF</p>
+    <p>Allows specification of schematic (or terminological) knowledge</p>
+    <p>Special RDF-vocabulary (i.e. every RDFS document is an RDF document)</p>
+    <p>Namespace (usually abbreviated as "<strong>rdfs:</strong>") - <strong>http://www.w3.org/2000/01/rdf-schema#</strong></p>
 </section>
 
 <section class="slide" id="rdfs-5">
-    <h2>Schema knowledge with RDFS</h2>
+    <h2>Schema Knowledge with RDFS</h2>
     <p>
         RDF Schema (RDFS):
         <ul>
             <li>
-                Vocabulary is not thematized (as in FOAF), but generically (in terms of re-use)
+                Vocabulary is not thematic (as in FOAF), but generic.
             </li>
             <li>
-                Allows the specification of (parts of) the semantics of arbitrary RDF-vocabularies (that is a kind of "Metavokabular")
+                Allows the specification of (parts of) the semantics of arbitrary RDF-vocabularies
             </li>
             <li>
-                Advantage is that the software with RDFS support interprets each defined by means of RDFS vocabulary correctly
+                Software with RDFS support can interpret any RDFS vocabulary correctly.
             </li>
             <li>
-                Functionality makes RDFS into an ontology (lightweight ontology)
+                Functionality makes RDFS into an ontology (lightweight ontology).
             </li>
-            <li>„A little semantics goes a long way.“</li>
         </ul>
     </p>
 </section>
@@ -1155,269 +1166,268 @@ RDF Schema
     <h2>RDF-S Instances</h2>
     <p>Instances can be assigned to one or more classes:</p>
     <img src="images/rdfs-instances-ex.png" style="max-height: 60%;">
-    <textarea class="code" mode="n3" style="display: none;">
-Boddingtons rdf:type    Ale
-Grafentrunk rdf:type    Bock
-Hoegaarden  rdf:type    White
-Jever       rdf:type    Pilsner 
-    </textarea>
+    <pre class="brush: n3">
+Boddingtons   rdf:type    Ale .
+Grafentrunk   rdf:type    Bock .
+Hoegaarden    rdf:type    White .
+Jever         rdf:type    Pilsner . 
+    </pre>
 </section>
 
 <section class="slide" id="rdfs-7">
     <h2>Classes and Instances</h2>
-    <p>Typing of resources already in RDF to identify lists:</p>
+    <p>Typing of resources already used in RDF to identify lists:</p>
     <img src="images/rdfs-lists.png" style="max-height: 60%;">
-    <p>Predicate <i>rdf:type</i> has the subject to the object as type</p>
-    <p>Object perceived as both a class that belongs to the resource identified by the subject (as a so-called instance)</p>
+    <p>Predicate <strong>rdf:type</strong> defines Object as type of Subject</p>
+    <p>Object perceived as both: a class and an instance.</p>
 </section>
 
 <section class="slide" id="rdfs-8">
     <h2>Classes and Instances</h2>
-    <textarea class="code" mode="n3" style="display: none;">
+    <pre class="brush: n3">
 ex:SemanticWeb  rdf:type  ex:Lecture .
-    </textarea>
+    </pre>
     <p>Characterizes the "Semantic Web" as an instance of the (newly defined) class "Lecture"</p>
-    <p>Class membership is not exclusive, e.g. with o.g. Triples simultaneously:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:SemanticWeb  rdf:type  ex:Fun .
-    </textarea>
-    <p>General: a priori possible syntactically no clear distinction between individuals and class identifiers</p>
-    <p>In reality characterization sometimes difficult, for example: http://www.un.org/#URI</p>
+    <p>Class membership is not exclusive:</p>
+    <pre class="brush: n3">
+ex:SemanticWeb  rdf:type  ex:Lecture, ex:Fun .
+    </pre>
+    <p>There's syntactically no clear distinction between instance and class identifiers</p>
+    <p>Example: <strong>http://www.un.org/#URI</strong></p>
 </section>
 
 <section class="slide" id="rdfs-9">
     <h2>The Class of all classes</h2>
-    <p>However, sometimes unique identifier of a URI as a desirable class identifier</p>
-    <p>Possible by typing the relevant URI as rdfs:Class</p>
-    <textarea class="code" mode="n3" style="display: none;">
+    <p>Sometimes it's required to identify resource as a class</p>
+    <p>Possible by typing the relevant URI as <strong>rdfs:Class</strong></p>
+    <pre class="brush: n3">
 ex:Lecture   rdf:type   rdfs:Class .
-    </textarea>
-    <p>rdfs:Class is therefore the "Class of all classes" and thus also contains itself, ie the following triple is always true:</p>
-    <textarea class="code" mode="n3" style="display: none;">
+    </pre>
+    <p><strong>rdfs:Class</strong> is therefore the "Class of all classes" and thus also contains itself, i.e. the following triple is always true:</p>
+    <pre class="brush: n3">
 rdfs:Class   rdf:type   rdfs:Class .
-    </textarea>
-</section>
-
-<section class="slide" id="rdfs-9">
-    <h2>Subclasses - Motivation</h2>
-    <p>Given triple</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:SemanticWeb  rdf:type  ex:Lecture .
-    </textarea>
-    <p>Problem: finding instances of class ex:Course provides no result</p>
-    <p>Possibility: Adding triples</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:SemanticWeb  rdf:type  ex:Course .
-    </textarea>
-    <p>Solves the problem but only for a resource ex:SemanticWeb</p>
-    <p>Automatically adding all instances leads to unnecessarily large RDF documents</p>
+    </pre>
 </section>
 
 <section class="slide" id="rdfs-10">
-    <h2>Subclasses</h2>
-    <p>It makes sense: one statement that every course is a course, i.e. each instance of the class ex:Lecture is automatically an instance of class ex:Course</p>
-    <p>Realized by the <i>rdfs:subClassOf</i> Property:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:Lecture   rdfs:subClassOf   ex:Course .
-    </textarea>
-    <p>"The Class of classes is a subclass of Class of classes."</p>
+    <h2>Subclasses - Motivation</h2>
+    <p>Given triple:</p>
+    <pre class="brush: n3">
+ex:SemanticWeb  rdf:type  ex:Lecture .
+    </pre>
+    <p>Problem: finding instances of class ex:Course provides no result</p>
+    <p>Possibility: Adding triples</p>
+    <pre class="brush: n3">
+ex:SemanticWeb  rdf:type  ex:Course .
+    </pre>
+    <p>Solves the problem but only for a specific resource <strong>ex:SemanticWeb</strong></p>
+    <p>Automatically adding all instances leads to unnecessarily large RDF documents</p>
 </section>
 
 <section class="slide" id="rdfs-11">
     <h2>Subclasses</h2>
-    <p>rdfs:subClassOf property is reflexive, that is each class is a subclass of itself, so that e.g. applies:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:Lecture   rdfs:subClassOf   ex:Lecture .
-    </textarea>
-    <p>Conversely, establishing the equality of two classes through mutual relationship classes, such as:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:Hospital  rdfs:subClassOf    ex:Clinic .
-ex:Clinic    rdfs:subClassOf    ex:Hospital .
-    </textarea>
+    <p>It makes sense that every lecture is a course, i.e. each instance of the class ex:Lecture is automatically an instance of class ex:Course.</p>
+    <p>Realized by the <strong>rdfs:subClassOf</strong> property:</p>
+    <pre class="brush: n3">
+ex:Lecture   rdfs:subClassOf   ex:Course .
+    </pre>
+    <p>"The Class of classes is a subclass of Class of classes."</p>
 </section>
 
 <section class="slide" id="rdfs-12">
-    <h2>Class hierarchies</h2>
-    <p>Common: not only individual subclass relations but entire class hierarchies (also: taxonomies) for example:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:Textbook      rdfs:subClassOf    ex:Book .
-ex:Book          rdfs:subClassOf    ex:Substrate .
-ex:Journal       rdfs:subClassOf    ex:Substrate .
-    </textarea>
-    <p>rdfs:subClassOf property, that is it follows automatically</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:Textbook      rdfs:subClassOf    ex:Substrate .
-    </textarea>
+    <h2>Subclasses</h2>
+    <p><strong>rdfs:subClassOf</strong> property is reflexive, meaning that each class is a subclass of itself, so that e.g. applies:</p>
+    <pre class="brush: n3">
+ex:Lecture   rdfs:subClassOf   ex:Lecture .
+    </pre>
+    <p>Conversely, establishing the equality of two classes can be done through mutual relationship of classes, such as:</p>
+    <pre class="brush: n3">
+ex:Hospital   rdfs:subClassOf    ex:Clinic .
+ex:Clinic     rdfs:subClassOf    ex:Hospital .
+    </pre>
 </section>
 
 <section class="slide" id="rdfs-13">
     <h2>Class hierarchies</h2>
-    <p>Class hierarchies particularly pronounced in some biology (e.g., classification of living things) as zoological classification of modern humans:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-@prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ex:<http://www.example.com/#> .
-
-ex:Animalia     rdf:type        rdfs:Class;
-                rdfs:label      "Animals" .
-ex:Chordates    rdfs:subClassOf ex:Animalia;
-                rdfs:label      "Chordates" .
-ex:Mammalia     rdfs:subClassOf ex:Chordates;
-                rdfs:label      "Mammals" .
-ex:Primates     rdfs:subClassOf ex:Mammalia; 
-                rdfs:label      "Primates" .
-ex:Hominidae    rdfs:subClassOf ex:Primates;
-                rdfs:label      "Hominids" .
-ex:Homo         rdfs:subClassOf ex:Primates;
-                rdfs:label      "Homo" .
-ex:HomoSapiens  rdfs:subClassOf ex:Homo;
-                rdfs:label      "Modern man"@de .
-
-ex:Tim          ex:isA          ex:HomoSapiens .
-    </textarea>
+    <p>Usually descriptions are created not only for individual (sub)classes relationships, but for entire class hierarchies (or taxonomies), e.g.:</p>
+    <pre class="brush: n3">
+ex:Textbook      rdfs:subClassOf    ex:Book .
+ex:Book          rdfs:subClassOf    ex:Substrate .
+ex:Journal       rdfs:subClassOf    ex:Substrate .
+    </pre>
+    <p><strong>rdfs:subClassOf</strong> property suggests that:</p>
+    <pre class="brush: n3">
+ex:Textbook      rdfs:subClassOf    ex:Substrate .
+    </pre>
 </section>
 
 <section class="slide" id="rdfs-14">
-    <h2>Classes</h2>
-    <p>Parallel intuitive to set theory:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-rdf:type           corresponds to    ∈
-rdfs:subClassOf    corresponds to    ⊆
-    </textarea>
-    <p>justifies, for example, the reflexivity and transitivity of subClassOf</p>
+    <h2>Class hierarchies</h2>
+    <p>Class hierarchies are widely used in biology for different classifications, e.g. zoological classification of modern humans:</p>
+    <pre class="brush: n3">
+@prefix rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix ex:&lt;http://www.example.com/#&gt; .
+
+ex:Animalia     rdf:type         rdfs:Class;
+                rdfs:label       "Animals" .
+ex:Chordates    rdfs:subClassOf  ex:Animalia;
+                rdfs:label       "Chordates" .
+ex:Mammalia     rdfs:subClassOf  ex:Chordates;
+                rdfs:label       "Mammals" .
+ex:Primates     rdfs:subClassOf  ex:Mammalia; 
+                rdfs:label       "Primates" .
+ex:Hominidae    rdfs:subClassOf  ex:Primates;
+                rdfs:label       "Hominids" .
+ex:Homo         rdfs:subClassOf  ex:Primates;
+                rdfs:label       "Homo" .
+ex:HomoSapiens  rdfs:subClassOf  ex:Homo;
+                rdfs:label       "Modern man"@de .
+
+ex:Tim          ex:isA           ex:HomoSapiens .
+    </pre>
 </section>
 
 <section class="slide" id="rdfs-15">
-    <h2>Predefined class identifiers</h2>
-    <p>
-        <strong>rdfs:Resource</strong><br/>
-        class of all resources (ie all elements of the subject area)
-    </p>
-    <p>
-        <strong>rdf:Property</strong><br/>
-        class of all relations (= the resources that are referenced by predicate URIs)
-    </p>
-    <p>
-        <strong>rdf:List, rdf:Seq, rdf:Bag, rdf:Alt</strong><br/>
-        container classes of different types of lists
-    </p>
-    <p>
-        <strong>rdfs:ContainerMembershipProperty</strong>
-        Class all relationships that represent a containment relationship
-    </p>
+    <h2>Classes</h2>
+    <p>Parallel to the set theory:</p>
+    <pre class="brush: n3">
+rdf:type           corresponds to    ∈ (element of)
+rdfs:subClassOf    corresponds to    ⊆ (subset)
+    </pre>
+    <p>This justifies, for example, the reflexivity and transitivity of <strong>rdfs:subClassOf</strong></p>
 </section>
 
 <section class="slide" id="rdfs-16">
     <h2>Predefined class identifiers</h2>
     <p>
-        <strong>rdf:XMLLiteral</strong><br/>
-        class of all values ​​of the predefined data type XMLLiteral
-    </p> 
+        <strong>rdfs:Resource</strong><br/>
+        Class of all resources (i.e. all elements of the subject area)
+    </p>
     <p>
-        <strong>rdfs:Literal</strong><br/>
-        class of literal values ​​(ie contains all data types as subclasses)
-    </p> 
+        <strong>rdf:Property</strong><br/>
+        Class of all relations (= the resources that are referenced by predicate URIs)
+    </p>
     <p>
-        <strong>rdfs:Datatype</strong><br/>
-        class of all data types (So as rdfs:Class a class of classes)
-    </p> 
+        <strong>rdf:List, rdf:Seq, rdf:Bag, rdf:Alt</strong><br/>
+        Container classes for different types of lists
+    </p>
     <p>
-        <strong>rdf:Statement</strong><br/>
-        class of reified statements
-    </p> 
+        <strong>rdfs:ContainerMembershipProperty</strong><br/>
+        Class of all properties that represent a container membership
+    </p>
 </section>
 
 <section class="slide" id="rdfs-17">
-    <h2>Properties</h2>
+    <h2>Predefined class identifiers</h2>
     <p>
-        Other names: relationships, relationships 
-        Attention: properties attached to RDF(S) is not assigned (as in OOP) special classes
-    </p>
+        <strong>rdf:XMLLiteral</strong><br/>
+        Class of all values ​​of the predefined data type XMLLiteral
+    </p> 
     <p>
-        Property identifier into triples usually predicate to characterize site, stand on the nature of the two resources correlate
-    </p>
+        <strong>rdfs:Literal</strong><br/>
+        Class of literal values ​​(i.e. contains all data types as subclasses)
+    </p> 
     <p>
-        mathematically often represented as a set of pairs: 
-        married = {(Adam and Eve), (Brad and Angelina), ...}
-    </p>
+        <strong>rdfs:Datatype</strong><br/>
+        Class of all data types (same as rdfs:Class is class of classes)
+    </p> 
     <p>
-        URI is identified as a property identifier by appropriate Typung:
-    </p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:publishedBy   rdf:type   rdf:Property .
-    </textarea>
+        <strong>rdf:Statement</strong><br/>
+        Class of RDF statements
+    </p> 
 </section>
 
 <section class="slide" id="rdfs-18">
+    <h2>Properties</h2>
+    <p>
+        Other name: relationships <br/>
+        Attention: properties attached to RDF(S) is not assigned (as in OOP) special classes
+    </p>
+    <p>
+        Property describes how two resources correlate
+    </p>
+    <p>
+        Mathematically often represented as a set of pairs: <br/>
+        Married = {(Adam and Eve), (Brad and Angelina), ...}
+    </p>
+    <p>
+        URI is identified as a property by appropriate typing:
+    </p>
+    <pre class="brush: n3">
+ex:publishedBy   rdf:type   rdf:Property .
+    </pre>
+</section>
+
+<section class="slide" id="rdfs-19">
     <h2>Subproperties</h2>
-    <p>Similar to super- / subclasses and super- / subproperty changes conceivable and meaningful</p>
-    <p>Representation in RDFS using rdfs:subPropertyOf example:</p>
-    <textarea class="code" mode="n3" style="display: none;">
+    <p>Similar to super-/subclasses.</p>
+    <p>Representated in RDFS using <strong>rdfs:subPropertyOf</strong>, e.g.:</p>
+    <pre class="brush: n3">
 ex:happilyMarried   rdf:subPropertyOf   rdf:married.
-    </textarea>
-    <p>allowed out of the triples</p>
-    <textarea class="code" mode="n3" style="display: none;">
+    </pre>
+    <br/>
+    <p>Then triples:</p>
+    <pre class="brush: n3">
 ex:Markus   ex:happilyMarried   ex:Anna .
-    </textarea>
-    <p>to conclude that</p>
-    <textarea class="code" mode="n3" style="display: none;">
+    </pre>
+    <p>allow to conclude that:</p>
+    <pre class="brush: n3">
 ex:Markus   ex:married   ex:Anna .
-    </textarea>
-</section>
-
-<section class="slide" id="rdfs-19">
-    <h2>Restriction of Properties</h2>
-    <p>Common: Property may make sense to connect only certain resources, such as combines ex:publishedBy only publications with publishers</p>
-    <p>i.e. URIs for all a, b ​​follows from the triple:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-a   ex:publishedBy   b .
-    </textarea>
-    <p>that is:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-a   rdf:type   ex:Publication .
-b   rdf:type   ex:Publisher .
-    </textarea>
-    <p>can be directly encoded in RDFS:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:publishedBy   rdfs:domain   ex:Publication .
-ex:publishedBy   rdfs:range    ex:Publisher .
-    </textarea>
-    <p>Also to specify data types for literals:</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:hasAge     rdfs:range    xsd:nonNegativeInteger .
-    </textarea>
-</section>
-
-<section class="slide" id="rdfs-19">
-    <h2>Restriction of Properties</h2>
-    
-    <p>Property restrictions are the only way to specify semantic relationships between property changes and classes</p>
-    <p>Note: Property constraints are global and conjunctively, eg</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:authorOf   rdfs:range   ex:Cookbook   .
-ex:authorOf   rdfs:range   ex:Storybook  . 
-    </textarea>
-    <p>therefore: as domain / range always use general possible class</p>
+    </pre>
 </section>
 
 <section class="slide" id="rdfs-20">
-    <h2>Domain and Range</h2>
-    <p>Properties are defined independently of classes</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:hasAlcoholicContent   rdfs:domain         ex:Beer
-ex:hasAlcoholicContent   rdfs:range          xsd:float
-ex:hasAlcoholicContent   rdfs:subPropertyOf  ex:hasContent 
-ex:brews   rdf:type      owl:ObjectProperty
-ex:brews   rdfs:domain   ex:Brewery
-ex:brews   rdfs:range    ex:Beer
-    </textarea>
-    <p>Domain: link with one or more classes</p>
-    <p>Range: defined values​​, which may take the property</p>
-    <p>Instances of a particular class</p>
-    <p>Literals, for example typed by XML Schema datatypes</p> 
+    <h2>Restriction of Properties</h2>
+    <p>Property may make sense only when connecting certain resources, e.g. <strong>ex:publishedBy</strong> only connects publications with publishers.</p>
+    <p>For all a, b from the triple:</p>
+    <pre class="brush: n3">
+a   ex:publishedBy   b .
+    </pre>
+    <p>we can say that:</p>
+    <pre class="brush: n3">
+a   rdf:type   ex:Publication .
+b   rdf:type   ex:Publisher .
+    </pre>
+    <p>Can be directly encoded in RDFS:</p>
+    <pre class="brush: n3">
+ex:publishedBy   rdfs:domain   ex:Publication .
+ex:publishedBy   rdfs:range    ex:Publisher .
+    </pre>
+    <p>Also can be used to specify data types for literals:</p>
+    <pre class="brush: n3">
+ex:hasAge     rdfs:range    xsd:nonNegativeInteger .
+    </pre>
 </section>
 
 <section class="slide" id="rdfs-21">
+    <h2>Restriction of Properties</h2>
+    
+    <p>Property restrictions are the only way to specify semantic relationships between property values and classes</p>
+    <p>Note: Property constraints are global.</p>
+    <pre class="brush: n3">
+ex:authorOf   rdfs:range   ex:Cookbook   .
+ex:authorOf   rdfs:range   ex:Book  . 
+    </pre>
+    <p>Therefore: domain and range should always use most generic class possible.</p>
+</section>
+
+<section class="slide" id="rdfs-22">
+    <h2>Domain and Range</h2>
+    <p>Properties are defined independently of classes:</p>
+    <pre class="brush: n3">
+ex:hasAlcoholicContent   rdfs:subPropertyOf  ex:hasContent .
+ex:hasAlcoholicContent   rdfs:domain         ex:Beer .
+ex:hasAlcoholicContent   rdfs:range          xsd:float .
+ex:brews   rdf:type      owl:ObjectProperty .
+ex:brews   rdfs:domain   ex:Brewery .
+ex:brews   rdfs:range    ex:Beer .
+    </pre>
+    <p>Domain: links with one or more classes</p>
+    <p>Range: defines values​​ that property may take</p>
+</section>
+
+<section class="slide" id="rdfs-23">
     <h2>RDFS Class & Property Hierarchies</h2>
     <img src="images/rdfs-classes-props.png">
 </section>
@@ -1435,32 +1445,35 @@ Vocaburies
 </section>
 
 <section class="slide" id="vocabs-1">
-    <h2>FOAF (Friend-of-a-Friend)</h2>
-    <img src="images/foaf.png">
-    <p>defines classes and properties for representing information about people and their relationships</p>
-    <textarea class="code" mode="n3" style="display: none;">
-ex:Tim   rdf:type         foaf:Person
-ex:Tim   currentProject   http://OntoWiki.net
-ex:Tim   foaf:homepage    http://bis.informatik.uni-leipzig.de/TimofeyErmilov
-ex:Tim   foaf:knows       http://sebastian.tramp.name/
-    </textarea>
+    <h2>
+        <img style="float:left; display:inline; max-height: 10%;" src="images/foaf.png">
+        FOAF (Friend-of-a-Friend)
+    </h2>
+    <p>Defines classes and properties for representing information about people and their relationships.</p>
+    <pre class="brush: n3">
+ex:Tim   rdf:type         foaf:Person .
+ex:Tim   currentProject   &lt;http://OntoWiki.net&gt; .
+ex:Tim   foaf:homepage    &lt;http://bis.informatik.uni-leipzig.de/TimofeyErmilov&gt; .
+ex:Tim   foaf:knows       &lt;http://sebastian.tramp.name/&gt; .
+    </pre>
     <img src="images/foaf-voc.png">
 </section>
 
 <section class="slide" id="vocabs-2">
-    <h2>SIOC (Semantically Interlinked Online Communities) Vocabulary</h2>
+    <h2>SIOC (Semantically Interlinked Online Communities)</h2>
     <p>Represent content from Blogs, Wikis, Forums, Mailinglists, Chats etc.</p>
     <img src="images/sioc.png">
 </section>
 
 <section class="slide" id="vocabs-3">
     <h2>SKOS (Simple Knowledge Organization System)</h2>
-    <p>support the use of thesauri, classification schemes, subject heading systems and taxonomies</p>
+    <p>Supports the use of thesauri, classification schemes, subject heading systems and taxonomies.</p>
     <img src="images/skos.png">
 </section>
 
 <section class="slide" id="vocabs-4">
-    <h2>VoID (Vocabulary on Interlinked Datasets)</h2>
+    <h2>VoID (Vocabulary of Interlinked Datasets)</h2>
+    <p>Used for expressing metadata about RDF datasets.</p>
     <img src="images/void.png">
 </section>
 
@@ -1483,38 +1496,49 @@ Tools
 
 <section class="slide" id="tools-stores">
     <h2>Triple / Quad Stores</h2>
-    <p>Supported open-source and commercial versions as well as hosted services available:</p>
+    <p>Open-source and commercial versions as well as hosted services:</p>
     <ul>
-        <li>Commercial:
-            <a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> (Franz),
-            <a href="http://www.ontotext.com/owlim/editions">OWLIM</a> (OntoText),
-            <a href="http://virtuoso.openlinksw.com/">Virtuoso</a> (OpenLink),
-            <a href="http://stardog.com/">Stardog</a>, (ClarkParsia),
-            &hellip;
+        <li><h3>Commercial:</h3>
+            <p>
+                <ul>
+                    <li><a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> (Franz)</li>
+                    <li><a href="http://www.ontotext.com/owlim/editions">OWLIM</a> (OntoText)</li>
+                    <li><a href="http://virtuoso.openlinksw.com/">Virtuoso</a> (OpenLink)</li>
+                    <li><a href="http://stardog.com/">Stardog</a>, (ClarkParsia)</li>
+                    <li>&hellip;</li>
+                </ul>
+            </p>
         </li>
-        <li>Open Source:
-            <strong><a href="http://www.openlinksw.com/wiki/main/Main">Virtuoso OpenSource</a></strong>,
-            <a href="http://4store.org/">4store</a>,
-            <a href="http://www.mulgara.org/">Mulgara</a>,
-            <a href="http://www.aelius.com/njh/redstore/">redstore</a>,
-            &hellip;
+        <li><h3>Open Source:</h3>
+            <p>
+                <ul>
+                    <li><strong><a href="http://www.openlinksw.com/wiki/main/Main">Virtuoso OpenSource</a></strong></li>
+                    <li><a href="http://4store.org/">4store</a></li>
+                    <li><a href="http://www.mulgara.org/">Mulgara</a></li>
+                    <li><a href="http://www.aelius.com/njh/redstore/">redstore</a></li>
+                    <li>&hellip;</li>
+                </ul>
+            </p>
         </li>
-        <li>Hosted services:
-            <strong><a href="http://dydra.com/">Dydra</a></strong>,
-            <a href="http://www.talis.com/platform/">Talis platform</a>,
-            &hellip;
+        <li><h3>Hosted services:</h3>
+            <p>
+                <ul>
+                    <li><strong><a href="http://dydra.com/">Dydra</a></strong></li>
+                    <li><a href="http://www.talis.com/platform/">Talis platform</a></li>
+                    <li>&hellip;</li>
+                </ul>
+            </p>
         </li>
     </ul>
 </section>
 
 <div class="slide" id="tools-virtuoso">
     <h2>Virtuoso</h2>
-    <p></p>
     <ul>
         <li>Commercial and OpenSource license available</li>
-        <li>Written in C++ and based on a SQL backend</li>
+        <li>Written in C++ and based on an SQL backend</li>
         <li>Part of the Semantic Desktop / KDE project</li>
-        <li>Available on any Debian-based installation</li>
+        <li>Available on any Debian-based linux installation</li>
         <li>Quad-store with integrated application server</li>
         <li>Integrated Linked Data Deployment</li>
         <li>DAV, RDF Spongers, WebID support, &hellip;</li>
@@ -1533,17 +1557,16 @@ Tools
 
 <section class="slide" id="tools-dydra">
     <h2>Dydra</h2>
+    <ul>
+        <li>Cloud service for RDF storage and querying</li>
+        <li>Basic but nice HTML front-end (query shell)</li>
+        <li>APIs for Java, Perl, PHP, ...</li>
+        <li>Database layer as a <a href="http://en.wikipedia.org/wiki/Content-addressable_storage">content-addressable storage</a></li>
+    </ul>
     <blockquote>
         <p>Our goal is to develop the github for graph data.</p>
         <cite><a href="http://ar.to/">Arto Bendiken</a>, 10/2010</cite>
     </blockquote>
-    <ul>
-        <li>cloud service for RDF storage and querying</li>
-        <li>Basic but nice HTML front-end (e.g. query shell)</li>
-        <li>APIs for Java, Perl, PHP, ...</li>
-        <li>Database layer as a <a href="http://en.wikipedia.org/wiki/Content-addressable_storage">content-addressable storage</a></li>
-
-    </ul>
 </section>
 
 
@@ -1557,10 +1580,10 @@ Tools
 </section>
 
 <section class="slide" id="tools-fox">
-    <h2>Extraction: FOX</h2>
-    <depiction class="ahalf right">
-        <img class="center" src="http://lh3.ggpht.com/-d79marTMEUo/TlzV1DPGXZI/AAAAAAAAApY/HOpg8PyJT0o/s800/fox.png">
-    </depiction>
+    <h2>
+        Extraction: FOX
+        <img style="display: inline; float:right;" src="http://lh3.ggpht.com/-d79marTMEUo/TlzV1DPGXZI/AAAAAAAAApY/HOpg8PyJT0o/s800/fox.png">
+    </h2>
     <p>Federated Knowledge Extraction Framework</p>
     <ul>
         <li>Input in natural language text files</li>
@@ -1578,27 +1601,28 @@ Tools
 
 <section class="slide" id="tools-fox-example-output">
     <h2>FOX Example Output</h2>
-    <pre>[] a ann:Annotation , scmsann:ORGANIZATION ;
+    <pre class="brush: n3">[] a ann:Annotation , scmsann:ORGANIZATION ;
      scms:beginIndex "22"^^xsd:int ;
      scms:endIndex "43"^^xsd:int ;
      scms:means dbpedia:University_of_Leipzig ;
      scms:source &lt;http://ns.aksw.org/scms/tools/FOX&gt; ;
-     ann:body "University of Leipzig"^^xsd:string .</pre>
-    This could be used to add
+     ann:body "University of Leipzig"^^xsd:string .
+    </pre>
+    <p>This could be used to add</p>
     <pre>:mySource foaf:topic dbpedia:University_of_Leipzig</pre>
-    to the metadata of <code>:mySource</code>.
+    <p>to the metadata of <code>:mySource</code>.</p>
 </section>
 
 <section class="slide" id="tools-limes">
-    <h2>Enrichment: LIMES</h2>
-    <depiction class="ahalf right">
-        <img class="center" src="http://lh4.ggpht.com/-u3xaJ9mAcfY/TlzV1f0OluI/AAAAAAAAApU/z0V6VURN_tI/s800/limes.png">
-    </depiction>
+    <h2>
+        Enrichment: LIMES
+        <img style="display: inline; float:right;" src="http://lh4.ggpht.com/-u3xaJ9mAcfY/TlzV1f0OluI/AAAAAAAAApU/z0V6VURN_tI/s800/limes.png">
+    </h2>
     <p>LIMES is a link discovery framework for the Web of Data</p>
     <ul>
-        <li>implements time-efficient approaches for large-scale link discovery</li>
-        <li>based on the characteristics of metric spaces</li>
-        <li>easily configurable via a web interface</li>
+        <li>Implements time-efficient approaches for large-scale link discovery</li>
+        <li>Based on the characteristics of metric spaces</li>
+        <li>Easily configurable via a web interface</li>
     </ul>
 </section>
 
@@ -1614,17 +1638,17 @@ Tools
 
 <section class="slide" id="tools-protege">
     <h2>Editing: Protégé</h2>
-    <blockquote>a free, open source ontology editor and knowledge-base framework.</blockquote>
     <ul>
         <li>Java Swing desktop application (Web-based Protégé as beta release)</li>
         <li>Very long development history beyond the existence of RDF</li>
         <li>Large plugin repository (backends, import / export, &hellip;)</li>
         <li>Strong support for reasoning and ontology engineering</li>
-        <li>Strong support instance editing forms / knowledge acquisition</li>
+        <li>Strong support for instance editing forms / knowledge acquisition</li>
     </ul>
+    <blockquote>a free, open source ontology editor and knowledge-base framework.</blockquote>
 </section>
 
-<section class="slide" id="tools-topbraid-interface">
+<section class="slide" id="tools-protege-interface">
     <h2>Protégé</h2>
     <figure class="twothird center">
     <a href="images/Protege.png">
@@ -1636,14 +1660,14 @@ Tools
 
 <section class="slide" id="tools-topbraid">
     <h2>Editing: TopBraid Composer</h2>
-    <blockquote>a modelling environment for developing Semantic Web ontologies and building semantic applications</blockquote>
     <ul>
         <li>Implemented as an Eclipse plug-in</li>
-        <li>Target user: Enterprise knowledge worker and developer</li>
+        <li>Target user: Enterprise knowledge experts and developers</li>
         <li>Strong support of SPARQL and SPARQL based rules (<a href="http://www.w3.org/Submission/2011/SUBM-spin-modeling-20110222/">SPARQL Inferencing Notation - SPIN</a>)</li>
         <li>Integration with Sesame and other Triple Stores</li>
-        <li>Extensible via a published API</li>
+        <li>Extensible via API</li>
     </ul>
+    <blockquote>A modelling environment for developing Semantic Web ontologies and building semantic applications</blockquote>
 </section>
 
 <section class="slide" id="tools-topbraid-interface">
@@ -1698,7 +1722,6 @@ Sebastian [[knows::Tilo]] since two years.
 
 <section class="slide" id="tools-more">
     <h2>More Tools</h2>
-    <p>If we still have time &hellip;</p>
     <ul>
         <li><a href="http://hanne.aksw.org/">HANNE</a> - Holistic application for navigational knowledge engineering</li>
         <li><a href="http://www.visualdataweb.org/relfinder.php">RelFinder</a> - Interactive Relationship Discovery in RDF Data</li>
@@ -1762,9 +1785,10 @@ THE END
 <script src="extensions/scale/deck.scale.js"></script>
 
 <!-- syntax highlight -->
-<script type="text/javascript" src="syntax/shCore.js"></script>
-<script type="text/javascript" src="syntax/shBrushTurtle.js"></script>
-<script type="text/javascript" src="syntax/shBrushXml.js"></script>
+<script src="syntax/shCore.js"></script>
+<script src="syntax/shBrushXml.js"></script>
+<script src="syntax/shBrushJScript.js"></script>
+<script src="syntax/shBrushTurtle.js"></script>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
